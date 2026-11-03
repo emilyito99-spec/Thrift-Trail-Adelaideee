@@ -47,7 +47,7 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
       `🌿 My Adelaide Thrift Trail Itinerary\n` +
       `Total Stops: ${savedStores.length}\n\n` +
       text +
-      `\n\nCurated with Thrift Trail Adelaide (https://emilyito99.github.io/thrift-trail-adelaide/)`;
+      `\n\nCurated with Thrift Trail Adelaide (https://emilyito99-spec.github.io/Thrift-Trail-Adelaideee/)`;
 
     navigator.clipboard.writeText(fullSummary);
     setCopied(true);
