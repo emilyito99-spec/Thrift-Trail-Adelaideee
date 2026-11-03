@@ -1,0 +1,6 @@
+{
+  "name": "Thrift Trail Adelaide",
+  "description": "Find and compare second hand and vintage clothing stores in Adelaide. A curated sustainable fashion guide for students and young adults.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

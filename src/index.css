@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --color-cream: #FAF7F2;
+  --color-cream-soft: #F4EFEA;
+  --color-cream-border: #E8DFD5;
+  --color-forest: #2F5233;
+  --color-forest-dark: #213B24;
+  --color-forest-light: #EBF2EC;
+  --color-earth-neutral: #585047;
+  --color-clay: #C06443;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: #FAF7F2;
+  color: #26211D;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
