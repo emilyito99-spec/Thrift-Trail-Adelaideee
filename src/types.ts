@@ -48,20 +48,32 @@ export interface Store {
   tipsForVisitors: string;
 }
 
+export interface GuideSection {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  afterBulletsParagraphs?: string[];
+  subsections?: {
+    subheading: string;
+    paragraphs: string[];
+    bullets?: string[];
+    afterBulletsParagraphs?: string[];
+  }[];
+  tips?: string[];
+}
+
 export interface GuideArticle {
   id: string;
   title: string;
+  seoTitle?: string;
+  metaDescription?: string;
   subtitle: string;
   readTime: string;
   category: string;
   imageUrl: string;
   summary: string;
   keyTakeaways: string[];
-  contentSections: {
-    heading: string;
-    paragraphs: string[];
-    tips?: string[];
-  }[];
+  contentSections: GuideSection[];
 }
 
 export type PageRoute = 'home' | 'find-stores' | 'guides' | 'about' | 'my-trail';
