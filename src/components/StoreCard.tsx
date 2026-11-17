@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Store } from '../types';
 import { MapPin, Train, Bookmark, Check, ArrowRight, Layers } from 'lucide-react';
 
@@ -21,6 +21,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({
 }) => {
   const [imageError, setImageError] = useState(false);
 
+  useEffect(() => {
+    setImageError(false);
+  }, [store.imageUrl]);
+
   return (
     <article className="group bg-white rounded-lg border border-[#E8DFD5] overflow-hidden flex flex-col justify-between transition-all duration-200 hover:shadow-md hover:border-[#2F5233]/40">
       <div>
@@ -33,7 +37,6 @@ export const StoreCard: React.FC<StoreCardProps> = ({
               referrerPolicy="no-referrer"
               onError={() => setImageError(true)}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
-              loading="lazy"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#FAF7F2] to-[#EBF2EC] text-[#585047]">

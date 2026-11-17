@@ -11,6 +11,10 @@ import styleY2kPrelovedImg from '../assets/images/style_y2k_preloved_17948943452
 import guideFabricCareImg from '../assets/images/guide_fabric_care_1794894345273.jpg';
 import guideTransitTrailImg from '../assets/images/guide_transit_trail_1794894345693.jpg';
 import guideStudentFindsImg from '../assets/images/guide_student_finds_1794894346479.jpg';
+import styleOpshopCuratedImg from '../assets/images/style_opshop_curated_1794894951993.jpg';
+import styleVintageLeatherImg from '../assets/images/style_vintage_leather_1794894952719.jpg';
+import styleHeritageWorkwearImg from '../assets/images/style_heritage_workwear_1794894953490.jpg';
+import styleDesignerArchiveImg from '../assets/images/style_designer_archive_1794894953302.jpg';
 
 export { vintageRacksImg, opShopTreasuresImg, heroThriftImg, guideStyleImg };
 
@@ -29,7 +33,7 @@ export const STORES_DATA: Store[] = [
     styles: ['Vintage Streetwear & Sportswear', '90s & Y2K Nostalgia', 'Workwear & Gorpcore'],
     vibe: 'High-energy streetwear vibe, curated racks with curated colour palettes and playlist.',
     imageUrl: styleStreetwearImg,
-    secondaryImageUrl: vintageRacksImg,
+    secondaryImageUrl: styleHeritageWorkwearImg,
     openingHours: {
       weekdays: '10:30 AM – 5:30 PM (Fri open until 7:00 PM)',
       saturday: '10:00 AM – 5:00 PM',
@@ -61,7 +65,7 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Workwear shirts & blazers', 'Casual dresses & linen trousers', 'Second-hand designer belts', 'Coats & jackets'],
     styles: ['Minimalist & Capsule Essentials', 'Eclectic Op Shop Mix', 'Designer & Archive Pieces'],
     vibe: 'Bright, boutique-style charity shop with cleanly sorted colour-coded racks.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: styleOpshopCuratedImg,
     secondaryImageUrl: styleMinimalistImg,
     openingHours: {
       weekdays: '9:30 AM – 5:00 PM',
@@ -157,7 +161,7 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Suede & leather bomber jackets', 'True vintage band tour tees', 'Corduroy dungarees & flares', 'Coogi-style chunky knits'],
     styles: ['90s & Y2K Nostalgia', '60s & 70s Retro & Boho', 'Vintage Streetwear & Sportswear'],
     vibe: 'Indie rock & roll boutique with neon touches, vintage rugs, and vinyl playing in the background.',
-    imageUrl: heroThriftImg,
+    imageUrl: styleVintageLeatherImg,
     secondaryImageUrl: styleY2kPrelovedImg,
     openingHours: {
       weekdays: '10:30 AM – 5:30 PM (Fri until 8:00 PM)',
@@ -221,7 +225,7 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['True 60s/70s mod dresses', 'Workwear chore coats', 'Vintage cowboy boots & leather belts', 'Western denim shirts'],
     styles: ['60s & 70s Retro & Boho', 'Workwear & Gorpcore', 'Designer & Archive Pieces'],
     vibe: 'Nostalgic neighborhood gem in historic Queen Street, surrounded by artisan cafes and bakery smells.',
-    imageUrl: vintageRacksImg,
+    imageUrl: styleHeritageWorkwearImg,
     secondaryImageUrl: styleRetro70sImg,
     openingHours: {
       weekdays: '11:00 AM – 4:30 PM (Closed Mon & Tue)',
@@ -252,7 +256,7 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Australian designer silk dresses (Zimmermann, Camilla and Marc)', 'Acne Studios denim', 'Tailored trench coats', 'Archival leather handbags'],
     styles: ['Designer & Archive Pieces', 'Minimalist & Capsule Essentials', '90s & Y2K Nostalgia'],
     vibe: 'High-end minimalist gallery atmosphere with bespoke brass hanging rails and neutral linen curtains.',
-    imageUrl: guideStyleImg,
+    imageUrl: styleDesignerArchiveImg,
     secondaryImageUrl: styleMinimalistImg,
     openingHours: {
       weekdays: '10:00 AM – 5:00 PM',
@@ -317,7 +321,7 @@ export const STORES_DATA: Store[] = [
     styles: ['Minimalist & Capsule Essentials', 'Eclectic Op Shop Mix'],
     vibe: 'Peaceful, immaculate boutique op shop run by welcoming longtime volunteers.',
     imageUrl: guideFabricCareImg,
-    secondaryImageUrl: opShopTreasuresImg,
+    secondaryImageUrl: styleOpshopCuratedImg,
     openingHours: {
       weekdays: '9:30 AM – 4:30 PM',
       saturday: '10:00 AM – 4:00 PM',
