@@ -76,4 +76,4 @@ export interface GuideArticle {
   contentSections: GuideSection[];
 }
 
-export type PageRoute = 'home' | 'find-stores' | 'guides' | 'about' | 'my-trail';
+export type PageRoute = 'home' | 'find-stores' | 'guides' | 'about' | 'my-trail' | 'contact';

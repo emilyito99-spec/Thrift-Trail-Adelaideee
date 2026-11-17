@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           {/* Zone 2: Navigation Links */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-[#585047]" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#585047]" aria-label="Main navigation">
             <button
               onClick={() => handleNav('home')}
               className={`whitespace-nowrap transition-colors hover:text-[#213B24] cursor-pointer ${
@@ -88,6 +88,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               About Project
             </button>
+            <button
+              onClick={() => handleNav('contact')}
+              className={`whitespace-nowrap transition-colors hover:text-[#213B24] cursor-pointer ${
+                currentPage === 'contact' ? 'text-[#213B24] font-semibold underline underline-offset-8 decoration-[#2F5233] decoration-2' : ''
+              }`}
+            >
+              Contact
+            </button>
           </nav>
 
           {/* Zone 3: 1 Primary Action CTA */}
@@ -102,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#585047] hover:text-[#213B24] hover:bg-[#F4EFEA] rounded-md transition-colors"
+              className="lg:hidden p-2 text-[#585047] hover:text-[#213B24] hover:bg-[#F4EFEA] rounded-md transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -114,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-[#E8DFD5] bg-[#FAF7F2] px-4 pt-3 pb-5 space-y-2 text-sm shadow-md">
+        <div className="lg:hidden border-b border-[#E8DFD5] bg-[#FAF7F2] px-4 pt-3 pb-5 space-y-2 text-sm shadow-md">
           <button
             onClick={() => handleNav('home')}
             className={`w-full text-left py-2.5 px-3 rounded-md transition-colors ${
@@ -159,6 +167,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             About & Sustainability Mission
+          </button>
+          <button
+            onClick={() => handleNav('contact')}
+            className={`w-full text-left py-2.5 px-3 rounded-md transition-colors ${
+              currentPage === 'contact' ? 'bg-[#EBF2EC] text-[#213B24] font-semibold' : 'text-[#585047]'
+            }`}
+          >
+            Contact
           </button>
           <div className="pt-2">
             <button

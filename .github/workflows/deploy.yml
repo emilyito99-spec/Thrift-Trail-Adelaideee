@@ -37,6 +37,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: '/Thrift-Trail-Adelaideee/'
+          VITE_FORMSPREE_ENDPOINT: ${{ vars.VITE_FORMSPREE_ENDPOINT }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

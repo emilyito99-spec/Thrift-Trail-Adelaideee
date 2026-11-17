@@ -9,6 +9,7 @@ import { FindStoresPage } from './pages/FindStoresPage';
 import { GuidesPage } from './pages/GuidesPage';
 import { AboutPage } from './pages/AboutPage';
 import { SavedTrailPage } from './pages/SavedTrailPage';
+import { ContactPage } from './pages/ContactPage';
 import { StoreDetailModal } from './components/StoreDetailModal';
 import { StoreComparisonModal } from './components/StoreComparisonModal';
 import { StyleQuizModal } from './components/StyleQuizModal';
@@ -75,6 +76,9 @@ export default function App() {
       } else if (mainRoute === 'my-trail') {
         setCurrentPage('my-trail');
         setSelectedGuideId(null);
+      } else if (mainRoute === 'contact') {
+        setCurrentPage('contact');
+        setSelectedGuideId(null);
       } else if (mainRoute === 'store' && parts[1]) {
         const found = STORES_DATA.find((s) => s.id === parts[1]);
         if (found) {
@@ -115,6 +119,10 @@ export default function App() {
       title = 'About Project & Sustainability Mission | Thrift Trail Adelaide';
     } else if (currentPage === 'my-trail') {
       title = 'My Adelaide Thrift Trail Itinerary | Thrift Trail Adelaide';
+    } else if (currentPage === 'contact') {
+      title = 'Contact Thrift Trail Adelaide | Suggest Stores & Share Feedback';
+      description =
+        'Contact Thrift Trail Adelaide to suggest a second-hand or vintage store, report outdated information, share feedback, or ask a question.';
     }
 
     document.title = title;
@@ -242,6 +250,8 @@ export default function App() {
             onNavigate={handleNavigate}
           />
         )}
+
+        {currentPage === 'contact' && <ContactPage onNavigate={handleNavigate} />}
       </main>
 
       {/* Store Detail Profile Modal */}
