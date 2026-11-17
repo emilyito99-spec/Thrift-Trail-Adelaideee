@@ -34,10 +34,16 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build application
-        run: npm run build
+        run: |
+          if [ -n "$VITE_FORMSPREE_ENDPOINT" ]; then
+            echo "Formspree endpoint detected in build environment."
+          else
+            echo "::warning::VITE_FORMSPREE_ENDPOINT is empty. Set it in GitHub Settings -> Secrets and variables -> Actions."
+          fi
+          npm run build
         env:
           VITE_BASE_PATH: '/Thrift-Trail-Adelaideee/'
-          VITE_FORMSPREE_ENDPOINT: ${{ vars.VITE_FORMSPREE_ENDPOINT }}
+          VITE_FORMSPREE_ENDPOINT: ${{ vars.VITE_FORMSPREE_ENDPOINT || secrets.VITE_FORMSPREE_ENDPOINT || vars.FORMSPREE_ENDPOINT || secrets.FORMSPREE_ENDPOINT }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

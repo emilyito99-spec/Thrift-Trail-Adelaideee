@@ -19,6 +19,17 @@ interface ContactPageProps {
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error' | 'unconfigured';
 
+function normalizeFormspreeEndpoint(raw: string): string {
+  const value = raw.trim();
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value)) return value;
+  if (value.startsWith('formspree.io/')) return `https://${value}`;
+  if (value.startsWith('/f/')) return `https://formspree.io${value}`;
+  if (value.startsWith('f/')) return `https://formspree.io/${value}`;
+  if (/^[a-zA-Z0-9_-]{6,32}$/.test(value)) return `https://formspree.io/f/${value}`;
+  return value;
+}
+
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -26,7 +37,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const formEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT || '').trim();
+  const formEndpoint = normalizeFormspreeEndpoint(
+    import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
