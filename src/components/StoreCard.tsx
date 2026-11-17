@@ -29,7 +29,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({
           {!imageError ? (
             <img
               src={store.imageUrl}
-              alt={`${store.name} - Second hand and vintage clothing in ${store.region}, Adelaide`}
+              alt={`Illustrative ${store.storeType.toLowerCase()} clothing style for ${store.name} (${store.region}, Adelaide)`}
               referrerPolicy="no-referrer"
               onError={() => setImageError(true)}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"

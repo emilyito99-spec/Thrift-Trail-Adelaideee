@@ -3,6 +3,14 @@ import vintageRacksImg from '../assets/images/store_vintage_racks_1793692055147.
 import opShopTreasuresImg from '../assets/images/store_op_shop_treasures_1793692072902.jpg';
 import heroThriftImg from '../assets/images/hero_thrift_fashion_1793692054727.jpg';
 import guideStyleImg from '../assets/images/guide_vintage_style_1793692072317.jpg';
+import styleStreetwearImg from '../assets/images/style_streetwear_90s_1794894342469.jpg';
+import styleRetro70sImg from '../assets/images/style_retro_70s_1794894342344.jpg';
+import styleMinimalistImg from '../assets/images/style_minimalist_capsule_1794894343271.jpg';
+import styleCoastalLinenImg from '../assets/images/style_coastal_linen_1794894343994.jpg';
+import styleY2kPrelovedImg from '../assets/images/style_y2k_preloved_1794894345219.jpg';
+import guideFabricCareImg from '../assets/images/guide_fabric_care_1794894345273.jpg';
+import guideTransitTrailImg from '../assets/images/guide_transit_trail_1794894345693.jpg';
+import guideStudentFindsImg from '../assets/images/guide_student_finds_1794894346479.jpg';
 
 export { vintageRacksImg, opShopTreasuresImg, heroThriftImg, guideStyleImg };
 
@@ -20,8 +28,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Heavyweight 90s graphic tees', 'Authentic Detroit work jackets', 'Vintage Nike windbreakers', 'Washed Levi 501s'],
     styles: ['Vintage Streetwear & Sportswear', '90s & Y2K Nostalgia', 'Workwear & Gorpcore'],
     vibe: 'High-energy streetwear vibe, curated racks with curated colour palettes and playlist.',
-    imageUrl: vintageRacksImg,
-    secondaryImageUrl: heroThriftImg,
+    imageUrl: styleStreetwearImg,
+    secondaryImageUrl: vintageRacksImg,
     openingHours: {
       weekdays: '10:30 AM – 5:30 PM (Fri open until 7:00 PM)',
       saturday: '10:00 AM – 5:00 PM',
@@ -54,7 +62,7 @@ export const STORES_DATA: Store[] = [
     styles: ['Minimalist & Capsule Essentials', 'Eclectic Op Shop Mix', 'Designer & Archive Pieces'],
     vibe: 'Bright, boutique-style charity shop with cleanly sorted colour-coded racks.',
     imageUrl: opShopTreasuresImg,
-    secondaryImageUrl: guideStyleImg,
+    secondaryImageUrl: styleMinimalistImg,
     openingHours: {
       weekdays: '9:30 AM – 5:00 PM',
       saturday: '10:00 AM – 5:00 PM',
@@ -85,7 +93,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['70s patterned button-downs', 'Vintage silver jewellery & watches', 'Crochet tote bags', 'Retro sunglasses'],
     styles: ['60s & 70s Retro & Boho', '90s & Y2K Nostalgia', 'Eclectic Op Shop Mix'],
     vibe: 'Warm, artistic, and community-minded boutique tucked into historic arcade tiles.',
-    imageUrl: vintageRacksImg,
+    imageUrl: styleRetro70sImg,
+    secondaryImageUrl: guideStyleImg,
     openingHours: {
       weekdays: '10:00 AM – 5:00 PM (Fri open until 7:30 PM)',
       saturday: '10:00 AM – 5:00 PM',
@@ -116,7 +125,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Pure wool winter overcoats', 'Silk blouses & quality linen shirts', 'Vintage denim & leather boots', 'Preloved blazers'],
     styles: ['Minimalist & Capsule Essentials', 'Eclectic Op Shop Mix', 'Workwear & Gorpcore'],
     vibe: 'Spacious, well-organized suburban treasure trove with friendly community volunteers.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: styleMinimalistImg,
+    secondaryImageUrl: guideFabricCareImg,
     openingHours: {
       weekdays: '9:00 AM – 5:00 PM',
       saturday: '9:00 AM – 4:30 PM',
@@ -148,7 +158,7 @@ export const STORES_DATA: Store[] = [
     styles: ['90s & Y2K Nostalgia', '60s & 70s Retro & Boho', 'Vintage Streetwear & Sportswear'],
     vibe: 'Indie rock & roll boutique with neon touches, vintage rugs, and vinyl playing in the background.',
     imageUrl: heroThriftImg,
-    secondaryImageUrl: vintageRacksImg,
+    secondaryImageUrl: styleY2kPrelovedImg,
     openingHours: {
       weekdays: '10:30 AM – 5:30 PM (Fri until 8:00 PM)',
       saturday: '10:00 AM – 5:30 PM',
@@ -179,7 +189,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Vintage boardshorts & surf tees', 'Floral sundresses & retro swim coverups', 'Denim shorts & skirts', 'Straw hats & sunglasses'],
     styles: ['Eclectic Op Shop Mix', '60s & 70s Retro & Boho', 'Minimalist & Capsule Essentials'],
     vibe: 'Sunlit and relaxed beachside vibe. Perfect spot to thrift right after grabbing an iced latte.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: styleCoastalLinenImg,
+    secondaryImageUrl: guideTransitTrailImg,
     openingHours: {
       weekdays: '9:00 AM – 5:00 PM',
       saturday: '9:00 AM – 5:00 PM',
@@ -211,6 +222,7 @@ export const STORES_DATA: Store[] = [
     styles: ['60s & 70s Retro & Boho', 'Workwear & Gorpcore', 'Designer & Archive Pieces'],
     vibe: 'Nostalgic neighborhood gem in historic Queen Street, surrounded by artisan cafes and bakery smells.',
     imageUrl: vintageRacksImg,
+    secondaryImageUrl: styleRetro70sImg,
     openingHours: {
       weekdays: '11:00 AM – 4:30 PM (Closed Mon & Tue)',
       saturday: '10:00 AM – 5:00 PM',
@@ -241,7 +253,7 @@ export const STORES_DATA: Store[] = [
     styles: ['Designer & Archive Pieces', 'Minimalist & Capsule Essentials', '90s & Y2K Nostalgia'],
     vibe: 'High-end minimalist gallery atmosphere with bespoke brass hanging rails and neutral linen curtains.',
     imageUrl: guideStyleImg,
-    secondaryImageUrl: vintageRacksImg,
+    secondaryImageUrl: styleMinimalistImg,
     openingHours: {
       weekdays: '10:00 AM – 5:00 PM',
       saturday: '10:00 AM – 4:30 PM',
@@ -272,7 +284,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Huge denim rack (Levi’s, Wrangler, Lee)', 'Retro sports windbreakers', 'Oversized flannel shirts', 'Knitwear & vintage sweaters'],
     styles: ['Vintage Streetwear & Sportswear', 'Eclectic Op Shop Mix', 'Workwear & Gorpcore'],
     vibe: 'Vast warehouse thrift experience for dedicated diggers who love hunting through big racks.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: guideStudentFindsImg,
+    secondaryImageUrl: styleStreetwearImg,
     openingHours: {
       weekdays: '9:00 AM – 6:00 PM (Thurs open until 9:00 PM)',
       saturday: '9:00 AM – 5:00 PM',
@@ -303,7 +316,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Clean cotton button-downs', 'Vintage wool cardigans', 'Pre-loved leather ankle boots', 'Summer shift dresses'],
     styles: ['Minimalist & Capsule Essentials', 'Eclectic Op Shop Mix'],
     vibe: 'Peaceful, immaculate boutique op shop run by welcoming longtime volunteers.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: guideFabricCareImg,
+    secondaryImageUrl: opShopTreasuresImg,
     openingHours: {
       weekdays: '9:30 AM – 4:30 PM',
       saturday: '10:00 AM – 4:00 PM',
@@ -334,7 +348,8 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Linen button-down shirts', 'Vintage denim jackets', 'Floral summer slips', 'Retro swimwear & shorts'],
     styles: ['Eclectic Op Shop Mix', 'Minimalist & Capsule Essentials', '60s & 70s Retro & Boho'],
     vibe: 'Casual beachside shop with a gentle ocean breeze and enthusiastic thrift shoppers.',
-    imageUrl: opShopTreasuresImg,
+    imageUrl: guideTransitTrailImg,
+    secondaryImageUrl: styleCoastalLinenImg,
     openingHours: {
       weekdays: '9:30 AM – 5:00 PM',
       saturday: '10:00 AM – 4:30 PM',
@@ -365,7 +380,7 @@ export const STORES_DATA: Store[] = [
     typicalFinds: ['Reworked Y2K cropped baby tees', 'Vintage oversized fleece sweaters', 'Upcycled tote bags', 'Retro sunglasses & beadwork'],
     styles: ['90s & Y2K Nostalgia', 'Vintage Streetwear & Sportswear', '60s & 70s Retro & Boho'],
     vibe: 'Vibrant urban market hall with local food vendors, indoor greenery, coffee, and live acoustic tunes.',
-    imageUrl: heroThriftImg,
+    imageUrl: styleY2kPrelovedImg,
     secondaryImageUrl: guideStyleImg,
     openingHours: {
       weekdays: 'Wed & Fri 4:00 PM – 8:30 PM (Evening market sessions)',

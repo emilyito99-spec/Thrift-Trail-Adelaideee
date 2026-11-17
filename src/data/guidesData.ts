@@ -1,8 +1,9 @@
 import { GuideArticle } from '../types';
 import guideStyleImg from '../assets/images/guide_vintage_style_1793692072317.jpg';
-import heroThriftImg from '../assets/images/hero_thrift_fashion_1793692054727.jpg';
-import storeVintageImg from '../assets/images/store_vintage_racks_1793692055147.jpg';
 import storeOpShopImg from '../assets/images/store_op_shop_treasures_1793692072902.jpg';
+import guideFabricCareImg from '../assets/images/guide_fabric_care_1794894345273.jpg';
+import guideTransitTrailImg from '../assets/images/guide_transit_trail_1794894345693.jpg';
+import guideStudentFindsImg from '../assets/images/guide_student_finds_1794894346479.jpg';
 
 export const GUIDES_DATA: GuideArticle[] = [
   {
@@ -193,7 +194,7 @@ export const GUIDES_DATA: GuideArticle[] = [
     subtitle: 'Insider strategies to find high-quality garments on a student budget without wasting whole days.',
     readTime: '6 min read',
     category: 'Budget & Saving',
-    imageUrl: storeOpShopImg,
+    imageUrl: guideStudentFindsImg,
     summary: 'Living out of home or studying on a budget? Here is the tactical guide to shopping Adelaide charity stores, timing discount days, and scoring true bargains.',
     keyTakeaways: [
       'Ask in-store about student discount days, loyalty clubs, and rotating colour-tag markdowns',
@@ -234,7 +235,7 @@ export const GUIDES_DATA: GuideArticle[] = [
     subtitle: 'How to spot natural fibres, evaluate stitching, and give second-hand finds a new lease of life.',
     readTime: '7 min read',
     category: 'Sustainable Care',
-    imageUrl: heroThriftImg,
+    imageUrl: guideFabricCareImg,
     summary: 'True sustainable fashion isn’t just buying preloved—it’s keeping garments in circulation for years. Master the art of tag reading and simple care.',
     keyTakeaways: [
       'Prioritise natural fibres: Australian wool, linen, pure silk, and heavyweight cotton',
@@ -277,7 +278,7 @@ export const GUIDES_DATA: GuideArticle[] = [
     subtitle: 'Spend a car-free Saturday visiting 6 top vintage stores and op shops across the CBD, Bowden, and Glenelg.',
     readTime: '5 min read',
     category: 'Adelaide Trails',
-    imageUrl: storeVintageImg,
+    imageUrl: guideTransitTrailImg,
     summary: 'You don’t need a car to thrift like a pro in Adelaide. Follow this curated route using the Adelaide Metro tram and train network with student concession fares.',
     keyTakeaways: [
       'Take advantage of the Adelaide CBD Free Tram Zone from South Terrace to the Entertainment Centre',

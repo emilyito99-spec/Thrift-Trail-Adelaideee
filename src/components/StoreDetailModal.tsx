@@ -75,7 +75,7 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
         <div className="relative h-64 sm:h-72 w-full bg-[#F4EFEA] overflow-hidden">
           <img
             src={activeImage || store.imageUrl}
-            alt={`${store.name} interior and second-hand fashion racks in ${store.region}, Adelaide`}
+            alt={`Illustrative ${store.storeType.toLowerCase()} clothing aesthetic for ${store.name} (${store.region}, Adelaide)`}
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -112,7 +112,7 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
                 activeImage === store.imageUrl ? 'bg-[#2F5233] text-white' : 'hover:bg-[#E8DFD5] text-[#585047]'
               }`}
             >
-              Store Interior
+              Style Preview
             </button>
             <button
               onClick={() => setActiveImage(store.secondaryImageUrl!)}
@@ -120,7 +120,7 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
                 activeImage === store.secondaryImageUrl ? 'bg-[#2F5233] text-white' : 'hover:bg-[#E8DFD5] text-[#585047]'
               }`}
             >
-              Curated Rack View
+              More Style Finds
             </button>
           </div>
         )}
