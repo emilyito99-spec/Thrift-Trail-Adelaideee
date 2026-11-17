@@ -45,7 +45,7 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
                 Side-by-Side Store Comparison
               </h2>
               <p className="text-xs text-[#585047]">
-                Compare example demonstration price tiers, aesthetics, and transit notes before heading out.
+                Compare indicative budget tiers, aesthetics, and Adelaide Metro transit access before heading out.
               </p>
             </div>
           </div>
@@ -132,7 +132,7 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
 
             {/* Row: Indicative Price Tier */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Indicative Price (Demo)</span>
+              <span className="font-semibold text-[#213B24]">Indicative Price</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047]">
                   <span className="font-bold text-[#2F5233] text-sm block">{store.priceTier}</span>
@@ -175,40 +175,30 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
 
             {/* Row: Fitting Rooms & Trade-In */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Fitting Rooms (Demo)</span>
+              <span className="font-semibold text-[#213B24]">Fitting Rooms</span>
               {stores.map((store) => (
-                <div key={store.id} className="text-[#585047] flex items-center gap-1.5 text-xs">
-                  {store.fittingRooms ? (
-                    <>
-                      <Check className="w-4 h-4 text-[#2F5233]" />
-                      <span>Available</span>
-                    </>
-                  ) : (
-                    <>
-                      <Minus className="w-4 h-4 text-[#7A7167]" />
-                      <span>None</span>
-                    </>
-                  )}
+                <div key={store.id} className="text-[#585047] text-[11px]">
+                  {store.fittingRooms}
                 </div>
               ))}
             </div>
 
-            {/* Row: Trade-in / Consignment */}
+            {/* Row: Trade-in / Donations */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Trade / Consign</span>
+              <span className="font-semibold text-[#213B24]">Buy / Sell / Donations</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047] text-[11px]">
-                  {store.clothingTradeIn ? 'Accepts trade/buy-back' : 'Donation only'}
+                  {store.clothingTradeIn}
                 </div>
               ))}
             </div>
 
-            {/* Row: Student Perks */}
+            {/* Row: Student Discounts */}
             <div className="grid grid-cols-4 gap-4 py-3 text-xs">
-              <span className="font-semibold text-[#213B24]">Student Perks (Demo)</span>
+              <span className="font-semibold text-[#213B24]">Student Discounts</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047] text-[11px]">
-                  {store.studentDiscount || 'Verify pricing in-store'}
+                  {store.studentDiscount || 'Check with the store'}
                 </div>
               ))}
             </div>
@@ -217,7 +207,7 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
 
         {/* Footer */}
         <div className="p-4 bg-[#FAF7F2] border-t border-[#E8DFD5] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[#7A7167]">
-          <span>Demonstration comparison data (unverified example prices, perks, and hours) for a Master&apos;s Digital Marketing project.</span>
+          <span>Indicative comparison guide; photos are illustrative. Confirm prices and hours directly with each store.</span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 bg-[#2F5233] text-white rounded font-medium hover:bg-[#213B24] transition-colors cursor-pointer"

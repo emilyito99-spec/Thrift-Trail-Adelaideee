@@ -45,12 +45,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({
             </div>
           )}
 
-          {/* Demonstration Flag Badge */}
-          {store.isDemonstrationData && (
-            <div className="absolute top-3 left-3 bg-[#FAF7F2]/90 backdrop-blur-xs text-[#585047] text-[11px] font-medium px-2 py-0.5 rounded border border-[#E8DFD5]">
-              Demo Profile
-            </div>
-          )}
+          {/* Illustrative Image Notice Badge */}
+          <div className="absolute top-3 left-3 bg-[#FAF7F2]/90 backdrop-blur-xs text-[#585047] text-[11px] font-medium px-2 py-0.5 rounded border border-[#E8DFD5]">
+            Illustrative Image
+          </div>
 
           {/* Quick Trail Save Icon */}
           <button
@@ -70,7 +68,15 @@ export const StoreCard: React.FC<StoreCardProps> = ({
 
           {/* Price Tier Overlay at bottom right */}
           <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-xs text-white text-xs font-semibold px-2 py-0.5 rounded">
-            {store.priceTier} · {store.priceTier === '$' ? 'Budget' : store.priceTier === '$$' ? 'Moderate' : store.priceTier === '$$$' ? 'Curated' : 'Archive'} (Demo)
+            {store.priceTier === '$'
+              ? '$ · Budget (Indicative)'
+              : store.priceTier === '$$'
+              ? '$$ · Mid-Range (Indicative)'
+              : store.priceTier === '$$$'
+              ? '$$$ · Curated (Indicative)'
+              : store.priceTier === '$$$$'
+              ? '$$$$ · Premium (Indicative)'
+              : 'Price Not Confirmed'}
           </div>
         </div>
 
@@ -100,7 +106,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({
 
           {/* Indicative Price Range note */}
           <div className="text-xs font-medium text-[#213B24] mb-3">
-            Indicative (Demo): <span className="text-[#585047] font-normal">{store.indicativePriceRange}</span>
+            Price Guide:{' '}
+            <span className="text-[#585047] font-normal line-clamp-2">
+              {store.indicativePriceRange}
+            </span>
           </div>
 
           {/* Public Transit snippet */}

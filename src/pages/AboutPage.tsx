@@ -66,7 +66,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 1. "Op Shop vs Curated Vintage" Pricing Ambiguity
               </span>
               <p className="text-[#585047] leading-relaxed">
-                Shoppers may not know in advance how prices differ between charity op shops and curated vintage boutiques. Thrift Trail provides clear indicative price tiers ($ to $$$$) as a planning guide before visitors travel.
+                Shoppers may not know in advance how prices differ between charity op shops and curated vintage boutiques. Thrift Trail provides indicative price tiers ($ to $$$$ where online evidence exists, or Price Not Confirmed) as a planning guide before visitors travel.
               </p>
             </div>
 
@@ -75,16 +75,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 2. Style Mismatch & Wasted Weekend Trips
               </span>
               <p className="text-[#585047] leading-relaxed">
-                Visiting a store expecting 90s streetwear only to find bridal wear causes disappointment. We categorize every store by concrete aesthetics (Y2K, workwear, retro 70s, minimal tailoring).
+                Visiting a store expecting 90s streetwear only to find formal wear causes disappointment. We categorize each store by the clothing styles highlighted on its website or social channels.
               </p>
             </div>
 
             <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] space-y-1">
               <span className="font-bold text-[#213B24] block">
-                3. Student Transit Accessibility
+                3. Transit &amp; Precinct Planning
               </span>
               <p className="text-[#585047] leading-relaxed">
-                Most students depend on Adelaide Metro trains, buses, and the free tram zone. Every store profile maps direct stops and travel times from Adelaide CBD campuses.
+                Many students depend on Adelaide Metro buses, trains, and the tram network. Each profile includes general precinct and nearby public transport corridor notes to help plan car-free trips.
               </p>
             </div>
           </div>
@@ -198,26 +198,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Demonstration Data & Transparency Notice */}
+      {/* Store Data, Pricing & Academic Integrity Notice */}
       <section className="bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl p-8 sm:p-10 space-y-4">
         <div className="flex items-start gap-3">
           <ShieldCheck className="w-6 h-6 text-[#2F5233] shrink-0 mt-0.5" />
           <div className="space-y-2">
             <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-              Demonstration Data & Academic Integrity Notice
+              Store Data, Indicative Pricing &amp; Illustrative Photo Notice
             </h3>
             <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
               In accordance with our Master&apos;s Digital Marketing project guidelines:
             </p>
             <ul className="space-y-1.5 text-xs text-[#585047] list-disc list-inside">
               <li>
-                Store profiles in this prototype are clearly labelled demonstration examples representing Adelaide shopping precincts and store types.
+                Store names, street addresses, and links are compiled from publicly available official store websites, charity directories, and official social pages across Adelaide.
               </li>
               <li>
-                Indicative price ranges, opening hours, student discount notes, and typical garment finds are illustrative demonstration data—please verify current details directly with each store.
+                Budget tiers ($ to $$$$) are indicative estimates only—not guaranteed price caps. Where insufficient public pricing details exist online, stores are labelled <strong>Price Not Confirmed</strong>.
               </li>
               <li>
-                We do not invent live stock availability, commercial promotions, or fabricated customer reviews.
+                Details that could not be verified online—such as unpublished opening hours, fitting room availability, or student discounts—are marked <strong>&ldquo;Check with the store&rdquo;</strong> rather than assumed.
+              </li>
+              <li>
+                Store photos are <strong>illustrative style images</strong> matched to each shop&apos;s clothing focus, not real interior or storefront photos of the businesses.
               </li>
               <li>
                 This website is an educational store discovery and comparison guide, not an online shopping or e-commerce platform.

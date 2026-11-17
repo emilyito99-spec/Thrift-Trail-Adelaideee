@@ -82,12 +82,17 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
           {/* Top Indicators */}
-          <div className="absolute top-4 left-4 flex items-center gap-2">
+          <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
             <span className="bg-[#FAF7F2]/90 backdrop-blur-xs text-[#213B24] text-xs font-semibold px-2.5 py-1 rounded">
               {store.storeType}
             </span>
             <span className="bg-black/60 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded">
-              {store.priceTier} Indicative Tier
+              {store.priceTier === 'Not confirmed'
+                ? 'Price Not Confirmed'
+                : `${store.priceTier} Indicative Tier`}
+            </span>
+            <span className="bg-[#FAF7F2]/90 backdrop-blur-xs text-[#585047] text-[11px] font-medium px-2 py-1 rounded border border-[#E8DFD5]">
+              Illustrative Photo
             </span>
           </div>
 
@@ -127,29 +132,27 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
 
         {/* Body Container */}
         <div className="p-6 sm:p-8 space-y-6 max-h-[calc(85vh-18rem)] overflow-y-auto">
-          {/* Demonstration Notice Box */}
-          {store.isDemonstrationData && (
-            <div className="flex items-start gap-3 p-3.5 bg-[#FAF7F2] rounded-md border border-[#C06443]/40 text-xs text-[#585047]">
-              <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-[#213B24]">Demonstration Store Profile (Unverified Example Data)</p>
-                <p className="text-[#7A7167] mt-0.5 leading-relaxed">
-                  Indicative prices, opening hours, student discount notes, and typical finds are example demonstration data for a Master&apos;s Digital Marketing project. Please confirm real trading details directly with the store before visiting.
-                </p>
-              </div>
+          {/* Store Info & Illustrative Photo Notice */}
+          <div className="flex items-start gap-3 p-3.5 bg-[#FAF7F2] rounded-md border border-[#E8DFD5] text-xs text-[#585047]">
+            <AlertCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold text-[#213B24]">Store Details &amp; Illustrative Photo Notice</p>
+              <p className="text-[#7A7167] mt-0.5 leading-relaxed">
+                Store name, address, and official links have been checked against public store or precinct sources. Budget tiers are indicative (not guaranteed), unverified details are marked &ldquo;Check with the store&rdquo;, and photos are illustrative style images rather than actual photos of the store.
+              </p>
             </div>
-          )}
+          </div>
 
           {/* Quick Snapshot Strip */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="p-3.5 bg-[#F4EFEA] rounded-md space-y-1.5">
               <div className="flex items-center gap-1.5 font-semibold text-[#213B24]">
                 <DollarSign className="w-4 h-4 text-[#2F5233]" />
-                <span>Indicative Price Range (Demo)</span>
+                <span>Indicative Price Guide</span>
               </div>
               <p className="text-[#585047]">{store.indicativePriceRange}</p>
               <p className="text-[11px] text-[#7A7167]">
-                Illustrative price guide for comparing op shops and vintage stores.
+                General budget guide only — check in-store for exact garment pricing.
               </p>
             </div>
 
@@ -203,43 +206,43 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             <div className="space-y-2">
               <h3 className="text-xs font-bold text-[#213B24] uppercase tracking-wider flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-[#2F5233]" />
-                <span>Opening Hours (Demo Example)</span>
+                <span>Opening Hours (Verify Before Visiting)</span>
               </h3>
               <div className="text-xs text-[#585047] space-y-1">
-                <div className="flex justify-between">
-                  <span className="text-[#7A7167]">Mon – Fri:</span>
-                  <span>{store.openingHours.weekdays}</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-[#7A7167] shrink-0">Weekdays:</span>
+                  <span className="text-right">{store.openingHours.weekdays}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-[#7A7167]">Saturday:</span>
-                  <span>{store.openingHours.saturday}</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-[#7A7167] shrink-0">Saturday:</span>
+                  <span className="text-right">{store.openingHours.saturday}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-[#7A7167]">Sunday:</span>
-                  <span>{store.openingHours.sunday}</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-[#7A7167] shrink-0">Sunday:</span>
+                  <span className="text-right">{store.openingHours.sunday}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* In-Store Amenities & Student Perks */}
+          {/* In-Store Amenities & Store Policies */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Fitting Rooms (Demo):</span>
+              <span className="text-[#7A7167] block text-[11px]">Fitting Rooms:</span>
               <span className="font-semibold text-[#213B24]">
-                {store.fittingRooms ? 'Available in-store' : 'Not available'}
+                {store.fittingRooms}
               </span>
             </div>
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Sell / Consign (Demo):</span>
+              <span className="text-[#7A7167] block text-[11px]">Buy / Sell / Donations:</span>
               <span className="font-semibold text-[#213B24]">
-                {store.clothingTradeIn ? 'Accepts trade-in/consignment' : 'Donations only'}
+                {store.clothingTradeIn}
               </span>
             </div>
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Student Perk (Demo):</span>
+              <span className="text-[#7A7167] block text-[11px]">Student Discounts:</span>
               <span className="font-semibold text-[#213B24]">
-                {store.studentDiscount || 'Standard pricing'}
+                {store.studentDiscount || 'Check with the store'}
               </span>
             </div>
           </div>
@@ -266,10 +269,21 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
 
         {/* Modal Bottom Action Bar */}
         <div className="p-4 sm:p-6 bg-[#FAF7F2] border-t border-[#E8DFD5] flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            {store.instagramHandle && (
+          <div className="flex flex-wrap items-center gap-2">
+            {store.websiteUrl && (
               <a
-                href={store.websiteUrl || 'https://instagram.com'}
+                href={store.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#213B24] bg-white border border-[#E8DFD5] rounded hover:bg-[#F4EFEA] transition-colors"
+              >
+                <span>Official Website</span>
+                <ExternalLink className="w-3 h-3 text-[#7A7167]" />
+              </a>
+            )}
+            {store.instagramHandle && store.instagramUrl && (
+              <a
+                href={store.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#213B24] bg-white border border-[#E8DFD5] rounded hover:bg-[#F4EFEA] transition-colors"

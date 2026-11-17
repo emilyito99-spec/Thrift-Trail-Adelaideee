@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#2F5233] bg-[#FAF7F2] px-3.5 py-2 rounded-md border border-[#E8DFD5]">
             <MapPin className="w-4 h-4 text-[#2F5233] shrink-0" />
-            <span>Adelaide CBD · Norwood · Glenelg · Bowden & Croydon · Goodwood & Unley</span>
+            <span>Adelaide CBD &amp; East End · Norwood · Unley &amp; Fullarton · Prospect</span>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Rundle St & East End Vintage
+                  CBD, Rundle St &amp; Ebenezer Place
                 </button>
               </li>
               <li>
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  The Parade Norwood Charity Op Shops
+                  The Parade Norwood Op Shops &amp; Vintage
                 </button>
               </li>
               <li>
@@ -137,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Glenelg Beachside Thrift Loop
+                  Unley, Fullarton &amp; Clarence Park
                 </button>
               </li>
               <li>
@@ -145,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Bowden & Croydon Indie Boutiques
+                  Prospect Churchill Rd Thrift Superstore
                 </button>
               </li>
               <li>
@@ -153,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Student Budget Op Shops (Budget Tier)
+                  Budget-Friendly Op Shops ($ Indicative)
                 </button>
               </li>
             </ul>
@@ -166,7 +166,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span>Project Transparency</span>
             </h4>
             <p className="text-xs leading-relaxed text-[#585047]">
-              This is a digital marketing discovery and comparison tool, not an e-commerce platform. All links redirect to official store pages or example demonstration references.
+              This is a digital marketing discovery and comparison tool, not an e-commerce platform. Links point to official store websites, charity pages, or official social profiles.
             </p>
             <div className="text-[11px] text-[#7A7167] bg-[#FAF7F2] p-2.5 rounded border border-[#E8DFD5]">
               Google Analytics 4 (GA4) measurement ready for academic performance review.
@@ -174,12 +174,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Demonstration Data Legal Disclaimer */}
+        {/* Store Information & Illustrative Photo Disclosure */}
         <div className="mt-10 pt-6 border-t border-[#E8DFD5] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-[#7A7167]">
           <div className="flex items-start gap-2 max-w-3xl">
             <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
             <p className="text-[11px] leading-relaxed">
-              <strong>Demonstration Data Disclosure:</strong> Store details, indicative prices, student discount notes, and opening hours are example demonstration data created for a Master&apos;s Digital Marketing project. We do not claim live stock availability, verified promotions, or customer reviews. Please confirm exact details directly with stores before travelling.
+              <strong>Store Information Disclosure:</strong> Store names, addresses, and official links are sourced from public business and charity pages. Budget tiers ($ to $$$$) are indicative guides only; unconfirmed pricing and unverified hours/amenities are clearly labelled. Store photos are illustrative fashion images, not real store photos. Always check directly with the store before travelling.
             </p>
           </div>
           <p className="text-[11px] shrink-0">

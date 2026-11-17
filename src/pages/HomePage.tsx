@@ -43,28 +43,23 @@ export const HomePage: React.FC<HomePageProps> = ({
   const neighborhoods = [
     {
       name: 'Adelaide CBD / East End',
-      tagline: 'Rundle Street vintage, laneway arcades & free tram zone access',
-      stops: '4 Curated Spots',
+      tagline: 'Rundle Street, Ebenezer Place, Ranelagh Street & Adelaide Arcade',
+      stops: '4 Curated Stores',
     },
     {
       name: 'Norwood / Inner East',
-      tagline: 'The Parade strip lined with high-end charity op shops',
-      stops: 'Vinnies & Local Charities',
+      tagline: 'The Parade charity op shops & vintage consignment strips',
+      stops: '3 Stores Along The Parade',
     },
     {
-      name: 'Glenelg / Beachside',
-      tagline: 'Coastal thrift loop accessible directly via the Glenelg Tram',
-      stops: 'Salvos, Red Cross & Beach Vibes',
+      name: 'Unley, Fullarton & Inner South',
+      tagline: 'Unley Road, Glen Osmond Road & Goodwood Road thrift stops',
+      stops: '3 South-Side Stores',
     },
     {
-      name: 'Bowden & Croydon / West',
-      tagline: 'Queen Street retro gems, plant-filled markets & artisan cafes',
-      stops: 'The Real McCoy & Plant 4',
-    },
-    {
-      name: 'Goodwood & Unley / South',
-      tagline: 'King William Rd designer consignment & quiet suburban gems',
-      stops: 'Prelove Studio & Save The Children',
+      name: 'Prospect / Inner North',
+      tagline: 'Churchill Road large-format thrift department shopping',
+      stops: 'Savers Prospect Superstore',
     },
   ];
 
@@ -97,7 +92,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1 text-xs text-[#585047]">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
-                  <span>Demo price tiers from budget ($) to archive ($$$$)</span>
+                  <span>Indicative budget tiers ($) to ($$$$), plus unconfirmed listings</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
@@ -163,7 +158,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               No more disappointing thrift trips across Adelaide.
             </h2>
             <p className="text-xs sm:text-sm text-[#585047] mt-2">
-              Shopping second-hand in Adelaide can feel hit-and-miss when you do not know a store&apos;s style focus or typical price bracket in advance. Thrift Trail Adelaide helps you compare example store profiles before heading out.
+              Shopping second-hand in Adelaide can feel hit-and-miss when you do not know a store&apos;s style focus or general price level in advance. Thrift Trail Adelaide helps you compare local Adelaide stores before heading out.
             </p>
           </div>
 
@@ -215,17 +210,17 @@ export const HomePage: React.FC<HomePageProps> = ({
               Top Curated Spotlights
             </span>
             <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-              Vintage clothing Adelaide: Example store profiles
+              Vintage clothing Adelaide: Featured stores
             </h2>
             <p className="text-xs sm:text-sm text-[#585047] mt-1">
-              Demonstration profiles showing how you can compare curated vintage boutiques and charity op shops in Adelaide.
+              Explore curated vintage boutiques and charity op shops in Adelaide. Photos are illustrative style guides; verify opening hours directly with each store.
             </p>
           </div>
           <button
             onClick={() => onNavigate('find-stores')}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2F5233] hover:text-[#213B24] transition-colors cursor-pointer self-start sm:self-auto"
           >
-            <span>View All 12 Stores in Directory</span>
+            <span>View All {STORES_DATA.length} Stores in Directory</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -260,7 +255,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {neighborhoods.map((n) => (
               <button
                 key={n.name}

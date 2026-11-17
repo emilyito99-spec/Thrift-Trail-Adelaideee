@@ -46,7 +46,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
   const [selectedRegion, setSelectedRegion] = useState<string>(initialRegion || 'all');
   const [selectedStoreType, setSelectedStoreType] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'recommended' | 'price-asc' | 'price-desc' | 'name'>('recommended');
-  const [onlyStudentDiscount, setOnlyStudentDiscount] = useState<boolean>(false);
+  const [onlyTradeIn, setOnlyTradeIn] = useState<boolean>(false);
 
   // Available style options
   const styleOptions: StyleTag[] = [
@@ -59,21 +59,21 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
     'Designer & Archive Pieces',
   ];
 
-  // Price tier definitions
-  const priceTiers: { tier: PriceTier; label: string; desc: string }[] = [
-    { tier: '$', label: '$ Budget Op Shop', desc: '$5 – $25 per garment' },
-    { tier: '$$', label: '$$ Moderate Thrift', desc: '$20 – $55 per garment' },
-    { tier: '$$$', label: '$$$ Curated Vintage', desc: '$45 – $120 per garment' },
-    { tier: '$$$$', label: '$$$$ Archive / Luxury', desc: '$100+ designer pieces' },
+  // Price tier definitions (indicative only — not guaranteed)
+  const priceTiers: { tier: PriceTier; label: string }[] = [
+    { tier: '$', label: '$ Budget-Friendly (Indicative)' },
+    { tier: '$$', label: '$$ Mid-Range (Indicative)' },
+    { tier: '$$$', label: '$$$ Curated Vintage (Indicative)' },
+    { tier: '$$$$', label: '$$$$ Premium / Collector (Indicative)' },
+    { tier: 'Not confirmed', label: 'Not Confirmed Online' },
   ];
 
   // Adelaide Regions
   const regionOptions: AdelaideRegion[] = [
     'Adelaide CBD / East End',
     'Norwood / Inner East',
-    'Glenelg / Beachside',
-    'Bowden & Croydon / West',
-    'Goodwood & Unley / South',
+    'Unley, Fullarton & Inner South',
+    'Prospect / Inner North',
   ];
 
   const storeTypes: StoreType[] = [
@@ -127,9 +127,9 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         }
       }
 
-      // Student discount filter
-      if (onlyStudentDiscount) {
-        if (!store.studentDiscount) {
+      // Buy / Sell / Trade filter
+      if (onlyTradeIn) {
+        if (!store.acceptsTradeIn) {
           return false;
         }
       }
@@ -137,11 +137,11 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
       return true;
     }).sort((a, b) => {
       if (sortBy === 'price-asc') {
-        const priceOrder: Record<PriceTier, number> = { $: 1, $$: 2, $$$: 3, $$$$: 4 };
+        const priceOrder: Record<PriceTier, number> = { $: 1, $$: 2, $$$: 3, $$$$: 4, 'Not confirmed': 5 };
         return priceOrder[a.priceTier] - priceOrder[b.priceTier];
       }
       if (sortBy === 'price-desc') {
-        const priceOrder: Record<PriceTier, number> = { $: 1, $$: 2, $$$: 3, $$$$: 4 };
+        const priceOrder: Record<PriceTier, number> = { $: 1, $$: 2, $$$: 3, $$$$: 4, 'Not confirmed': 5 };
         return priceOrder[b.priceTier] - priceOrder[a.priceTier];
       }
       if (sortBy === 'name') {
@@ -149,14 +149,14 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
       }
       return 0; // recommended default
     });
-  }, [searchQuery, selectedStyle, selectedPrice, selectedRegion, selectedStoreType, onlyStudentDiscount, sortBy]);
+  }, [searchQuery, selectedStyle, selectedPrice, selectedRegion, selectedStoreType, onlyTradeIn, sortBy]);
 
   const activeFilterCount =
     (selectedStyle !== 'all' ? 1 : 0) +
     (selectedPrice !== 'all' ? 1 : 0) +
     (selectedRegion !== 'all' ? 1 : 0) +
     (selectedStoreType !== 'all' ? 1 : 0) +
-    (onlyStudentDiscount ? 1 : 0) +
+    (onlyTradeIn ? 1 : 0) +
     (searchQuery.trim() ? 1 : 0);
 
   const resetFilters = () => {
@@ -165,7 +165,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
     setSelectedPrice('all');
     setSelectedRegion('all');
     setSelectedStoreType('all');
-    setOnlyStudentDiscount(false);
+    setOnlyTradeIn(false);
     setSortBy('recommended');
   };
 
@@ -182,19 +182,19 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
           Second hand clothing Adelaide: Store Directory
         </h1>
         <p className="text-xs sm:text-sm text-[#585047] mt-1 max-w-2xl leading-relaxed">
-          Filter and compare example curated vintage stores, independent boutiques, and community charity op shops across Adelaide by style, indicative price tier, and transit access.
+          Search, filter, and compare 11 Adelaide vintage stores, curated collectives, and charity op shops by clothing style, indicative budget level, and transit access.
         </p>
       </div>
 
-      {/* Prominent Demonstration Data Notice */}
-      <div className="p-4 bg-[#FAF7F2] border border-[#C06443]/40 rounded-lg flex items-start gap-3 text-xs text-[#585047]">
-        <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
+      {/* Store Information & Illustrative Photo Notice */}
+      <div className="p-4 bg-[#FAF7F2] border border-[#E8DFD5] rounded-lg flex items-start gap-3 text-xs text-[#585047]">
+        <AlertCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
         <div>
           <p className="font-semibold text-[#213B24]">
-            Demonstration Store Directory Notice
+            Store Information &amp; Illustrative Photo Notice
           </p>
           <p className="mt-0.5 leading-relaxed">
-            The store profiles, indicative price ranges, opening hours, and student discount notes below are example demonstration data created for a Master&apos;s Digital Marketing project. Please confirm real-time prices, trading hours, and any discounts directly with each store before visiting.
+            Store names, addresses, and links have been checked against official store or precinct sources. Budget levels ($–$$$$) are indicative estimates based on store type or publicly listed items where available—not guaranteed prices. Details without confirmed online information say &ldquo;Not confirmed&rdquo; or &ldquo;Check with the store&rdquo;, and all photos are illustrative clothing-style images rather than real photos of the stores.
           </p>
         </div>
       </div>
@@ -209,7 +209,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search store name, suburb (e.g. Norwood, Glenelg), or keyword (e.g. leather, denim, 90s)..."
+              placeholder="Search store name, suburb (e.g. Norwood, Unley, Prospect), or keyword (e.g. leather, denim, 90s)..."
               className="w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md text-[#213B24] placeholder:text-[#7A7167] focus:outline-none focus:ring-1 focus:ring-[#2F5233]"
             />
             {searchQuery && (
@@ -231,8 +231,8 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
               className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-2 text-[#213B24] focus:outline-none focus:ring-1 focus:ring-[#2F5233] cursor-pointer"
             >
               <option value="recommended">Recommended / Curated</option>
-              <option value="price-asc">Price: Low to High ($ to $$$$)</option>
-              <option value="price-desc">Price: High to Low ($$$$ to $)</option>
+              <option value="price-asc">Budget: Lower to Higher ($ to $$$$)</option>
+              <option value="price-desc">Budget: Higher to Lower ($$$$ to $)</option>
               <option value="name">Store Name (A–Z)</option>
             </select>
           </div>
@@ -241,7 +241,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         {/* Row 2: Indicative Price Tier Segmented Control (Functional Buttons) */}
         <div className="space-y-2">
           <span className="text-xs font-semibold text-[#213B24] block">
-            Indicative Price Range:
+            Indicative Budget Level (Not Guaranteed):
           </span>
           <div className="flex flex-wrap gap-1.5">
             <button
@@ -356,15 +356,15 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
               </select>
             </div>
 
-            {/* Student discount toggle */}
+            {/* Buy / Sell / Trade toggle */}
             <label className="flex items-center gap-1.5 text-xs text-[#585047] cursor-pointer select-none">
               <input
                 type="checkbox"
-                checked={onlyStudentDiscount}
-                onChange={(e) => setOnlyStudentDiscount(e.target.checked)}
+                checked={onlyTradeIn}
+                onChange={(e) => setOnlyTradeIn(e.target.checked)}
                 className="w-3.5 h-3.5 rounded border-[#E8DFD5] text-[#2F5233] focus:ring-[#2F5233]"
               />
-              <span>Demo Student Perks Listed</span>
+              <span>Buy / Sell / Trade Confirmed</span>
             </label>
           </div>
 
@@ -433,10 +433,10 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         </div>
       )}
 
-      {/* Demonstration notice reminder */}
+      {/* Store Info Reminder */}
       <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] text-xs text-[#7A7167] flex items-center justify-between gap-4">
         <p>
-          <strong>Demonstration Data Notice:</strong> All store listings, indicative price tiers, student perks, and opening hours are illustrative examples for a Master&apos;s Digital Marketing project. Always confirm current details directly with stores before travelling.
+          <strong>Verification Reminder:</strong> Pricing tiers are indicative guides only, unverified details are labelled &ldquo;Not confirmed&rdquo; or &ldquo;Check with the store&rdquo;, and card photos are illustrative clothing-style images. Always confirm current hours and prices directly with each store.
         </p>
       </div>
 

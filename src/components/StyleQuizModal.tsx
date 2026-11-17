@@ -133,30 +133,35 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 What is your target budget per garment?
               </h3>
               <p className="text-xs text-[#585047]">
-                We will filter example stores using indicative demonstration price tiers.
+                Choose an indicative budget category (not guaranteed pricing) to filter matching stores.
               </p>
 
               <div className="space-y-2.5 pt-2">
                 {[
                   {
                     tier: '$' as PriceTier,
-                    title: '$ Budget Thrifting (Demo tier: $)',
-                    desc: 'Community charity op shops and large thrift stores geared toward everyday budget finds.',
+                    title: '$ Budget-Friendly (Indicative)',
+                    desc: 'Charity op shops and large thrift stores geared toward everyday budget-friendly finds.',
                   },
                   {
                     tier: '$$' as PriceTier,
-                    title: '$$ Moderate Vintage Mix (Demo tier: $$)',
-                    desc: 'Curated market stalls, preloved collectives, and mid-range vintage boutiques.',
+                    title: '$$ Mid-Range / Curated Op Shop (Indicative)',
+                    desc: 'Curated vintage boutiques and designer-focused charity op shops.',
                   },
                   {
                     tier: '$$$' as PriceTier,
-                    title: '$$$ Curated Vintage (Demo tier: $$$)',
-                    desc: 'Hand-picked vintage racks, leather outerwear, retro tees, and heritage denim.',
+                    title: '$$$ Curated Vintage & Streetwear (Indicative)',
+                    desc: 'Specialist vintage streetwear, workwear, heritage brands, and curated retro drops.',
                   },
                   {
                     tier: '$$$$' as PriceTier,
-                    title: '$$$$ Designer Archive (Demo tier: $$$$)',
-                    desc: 'Consignment luxury labels, archival designer pieces, and investment wardrobe staples.',
+                    title: '$$$$ Premium / Collector Vintage (Indicative)',
+                    desc: 'Rare collector vintage pieces and specialty boutique finds.',
+                  },
+                  {
+                    tier: 'Not confirmed' as PriceTier,
+                    title: 'Price Not Confirmed Online',
+                    desc: 'Independent boutiques and multi-vendor collectives without fixed online pricing.',
                   },
                 ].map((item) => (
                   <button
@@ -194,17 +199,16 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 Where in Adelaide do you want to thrift?
               </h3>
               <p className="text-xs text-[#585047]">
-                Choose an area accessible by public transport or explore city-wide.
+                Choose an area accessible by Adelaide Metro transit or explore city-wide.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
                 {[
-                  { region: 'Any' as const, label: 'All Adelaide Areas', note: 'Show all top-matched stores' },
-                  { region: 'Adelaide CBD / East End' as AdelaideRegion, label: 'CBD & East End', note: 'Rundle St & Arcade laneways (Free Tram)' },
-                  { region: 'Norwood / Inner East' as AdelaideRegion, label: 'The Parade Norwood', note: 'Short bus ride from city, great op shops' },
-                  { region: 'Glenelg / Beachside' as AdelaideRegion, label: 'Glenelg Beachside', note: 'Direct tram from city to beach' },
-                  { region: 'Bowden & Croydon / West' as AdelaideRegion, label: 'Bowden & Croydon', note: 'Queen St cafes & train friendly' },
-                  { region: 'Goodwood & Unley / South' as AdelaideRegion, label: 'Goodwood & Unley', note: 'King William Rd & leafy southern op shops' },
+                  { region: 'Any' as const, label: 'All Adelaide Areas', note: 'Show all matching stores' },
+                  { region: 'Adelaide CBD / East End' as AdelaideRegion, label: 'CBD & East End', note: 'Ebenezer Pl, Rundle St, Adelaide Arcade & Ranelagh St' },
+                  { region: 'Norwood / Inner East' as AdelaideRegion, label: 'The Parade Norwood', note: 'Vinnies, Save the Children & A Star Is Worn' },
+                  { region: 'Unley, Fullarton & Inner South' as AdelaideRegion, label: 'Unley, Fullarton & Clarence Park', note: 'RSPCA Unley, 2nd Chance Collective & Chaos Bazaar' },
+                  { region: 'Prospect / Inner North' as AdelaideRegion, label: 'Prospect / Churchill Rd', note: 'Savers Prospect along Churchill Rd bus routes' },
                 ].map((item) => (
                   <button
                     key={item.label}

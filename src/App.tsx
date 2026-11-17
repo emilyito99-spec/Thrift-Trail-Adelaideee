@@ -38,13 +38,16 @@ export default function App() {
       const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (stored) {
         const ids: string[] = JSON.parse(stored);
-        return STORES_DATA.filter((s) => ids.includes(s.id));
+        const matched = STORES_DATA.filter((s) => ids.includes(s.id));
+        if (matched.length > 0 || ids.length === 0) {
+          return matched;
+        }
       }
     } catch {
       // fallback
     }
-    // Default initial saved store for immediate user engagement
-    return [STORES_DATA[0], STORES_DATA[1]];
+    // Default initial saved stores representing vintage boutique + charity op shop
+    return [STORES_DATA[0], STORES_DATA[7]];
   });
 
   // Save to localStorage whenever savedStores changes

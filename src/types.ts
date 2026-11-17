@@ -1,4 +1,4 @@
-export type PriceTier = '$' | '$$' | '$$$' | '$$$$';
+export type PriceTier = '$' | '$$' | '$$$' | '$$$$' | 'Not confirmed';
 
 export type StoreType = 'Op Shop / Charity' | 'Curated Vintage' | 'Consignment / Buy-Sell-Trade' | 'Market & Preloved Collective';
 
@@ -14,9 +14,8 @@ export type StyleTag =
 export type AdelaideRegion =
   | 'Adelaide CBD / East End'
   | 'Norwood / Inner East'
-  | 'Glenelg / Beachside'
-  | 'Bowden & Croydon / West'
-  | 'Goodwood & Unley / South';
+  | 'Unley, Fullarton & Inner South'
+  | 'Prospect / Inner North';
 
 export interface Store {
   id: string;
@@ -39,11 +38,13 @@ export interface Store {
     sunday: string;
   };
   studentDiscount?: string;
-  fittingRooms: boolean;
-  clothingTradeIn: boolean;
+  fittingRooms: string;
+  clothingTradeIn: string;
+  acceptsTradeIn: boolean;
   instagramHandle?: string;
+  instagramUrl?: string;
   websiteUrl?: string;
-  isDemonstrationData: boolean;
+  isDemonstrationData?: boolean;
   sustainabilityHighlights: string[];
   tipsForVisitors: string;
 }

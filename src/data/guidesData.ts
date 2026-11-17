@@ -175,8 +175,8 @@ export const GUIDES_DATA: GuideArticle[] = [
         paragraphs: [
           'Adelaide’s climate shifts from hot dry Mediterranean summers to crisp, drizzly winters. An ideal second-hand capsule wardrobe for students focuses on versatile layering:',
           '1. Outerwear: A heavyweight 90s chore jacket or broken-in leather bomber that pairs with casual tees or knitwear.',
-          '2. Mid-layers: Chunky Australian wool or mohair-blend sweaters, easily found at suburban op shops like Vinnies Norwood or Unley.',
-          '3. Foundation: Crisp vintage cotton button-downs and relaxed straight-leg denim from curated spots like Street Vintage Co. or Plant 4.',
+          '2. Mid-layers: Chunky Australian wool or mohair-blend sweaters, often found at suburban op shops like Vinnies Norwood or RSPCA Op Shop Unley.',
+          '3. Foundation: Crisp vintage cotton button-downs and relaxed straight-leg denim from curated spots like Midwest Trader or My Dead Grandpa.',
         ],
       },
       {
@@ -275,36 +275,36 @@ export const GUIDES_DATA: GuideArticle[] = [
   {
     id: 'adelaide-transit-thrift-trail',
     title: 'The Adelaide Public Transport Thrift Trail: Step-by-Step Itinerary',
-    subtitle: 'Spend a car-free Saturday visiting 6 top vintage stores and op shops across the CBD, Bowden, and Glenelg.',
+    subtitle: 'Plan a car-free day visiting curated vintage stores and charity op shops across the CBD, Norwood, and Unley.',
     readTime: '5 min read',
     category: 'Adelaide Trails',
     imageUrl: guideTransitTrailImg,
-    summary: 'You don’t need a car to thrift like a pro in Adelaide. Follow this curated route using the Adelaide Metro tram and train network with student concession fares.',
+    summary: 'You don’t need a car to thrift across Adelaide. Follow this flexible route linking CBD, Norwood, and Inner South stores via Adelaide Metro buses and walkable strips.',
     keyTakeaways: [
-      'Take advantage of the Adelaide CBD Free Tram Zone from South Terrace to the Entertainment Centre',
-      'Combine shopping with local coffee stops and parklands',
-      'Bring a sturdy canvas tote bag and reusable water bottle',
+      'Start in the Adelaide CBD and East End around Rundle Street, Ebenezer Place, and Adelaide Arcade',
+      'Catch a bus along The Parade to visit three Norwood stores within short walking distance',
+      'Always check current store opening hours before travelling, especially earlier in the week',
     ],
     contentSections: [
       {
-        heading: 'Morning: East End Heritage & Streetwear (9:30 AM – 12:00 PM)',
+        heading: 'Morning: CBD & East End Vintage Stops',
         paragraphs: [
-          'Start your morning at the East End of Rundle Street. Grab a flat white from a local laneway cafe and head to Street Vintage Co. and Fox On The Run Vintage right as doors open.',
-          'Next, walk 3 minutes over to the Australian Red Cross Shop on Rundle Street to browse designer donations and tailored coats.',
+          'Start in the city near Rundle Street and Ebenezer Place, where you can browse Midwest Trader for heritage Americana and workwear alongside Little Ms Waste-Not Vintage for handpicked 70s to 2000s pieces (check store hours before setting out).',
+          'From Rundle Mall, walk into Adelaide Arcade for Dulcie’s Vintage (open Monday to Saturday) or cross toward Ranelagh Street to explore My Dead Grandpa’s 40+ independent stalls (open Tuesday to Sunday).',
         ],
       },
       {
-        heading: 'Midday: Free Tram to Bowden / Plant 4 Precinct (12:30 PM – 2:30 PM)',
+        heading: 'Midday: The Parade, Norwood Strip',
         paragraphs: [
-          'Hop on the tram heading towards the Adelaide Entertainment Centre (completely free!). Get off at the Entertainment Centre stop and cross over into Bowden’s leafy green streets.',
-          'Stop at Plant 4 Bowden for street food lunch and explore the rotating vintage stalls, reworked streetwear racks, and eco-friendly sellers.',
+          'Catch an eastbound Adelaide Metro bus along Grenfell Street onto The Parade in Norwood.',
+          'Within one easy stretch of The Parade you can compare Vinnies Norwood (70 The Parade), Save the Children Op Shop (63 The Parade), and A Star Is Worn (45 The Parade)—check opening times ahead for individual boutiques.',
         ],
       },
       {
-        heading: 'Afternoon: Glenelg Coastal Op Shop Loop (3:00 PM – 5:30 PM)',
+        heading: 'Afternoon: Unley & Fullarton Inner South',
         paragraphs: [
-          'Board the Glenelg Tram from the city or Entertainment Centre straight to Moseley Square / Jetty Road, Glenelg. The tram ride is smooth and scenic.',
-          'Browse Salvos Stores on Jetty Road and take the short walk around the corner to the Red Cross Op Shop on Gordon Street. Wrap up your day watching the sunset over the Gulf St Vincent with some local fish and chips!',
+          'From the city or inner ring buses, head south to Unley Road to visit RSPCA Op Shop Unley (144 Unley Road) for premium and designer-focused charity finds.',
+          'If travelling on Thursday through Monday, you can also head to Glen Osmond Road in Fullarton for 2nd Chance Collective, or finish on Friday/Saturday morning–afternoon at Clarence Park’s Chaos Bazaar Vintage on Goodwood Road.',
         ],
       },
     ],

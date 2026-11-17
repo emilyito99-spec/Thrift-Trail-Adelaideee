@@ -38,15 +38,15 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
           `Stop ${i + 1}: ${s.name}\n` +
           `• Region: ${s.region} (${s.address})\n` +
           `• Transit: ${s.publicTransit}\n` +
-          `• Price Tier: ${s.priceTier} (${s.indicativePriceRange})\n` +
+          `• Price Guide: ${s.priceTier === 'Not confirmed' ? 'Not confirmed online' : `${s.priceTier} (Indicative)`} — ${s.indicativePriceRange}\n` +
           `• Hours: ${s.openingHours.weekdays}`
       )
       .join('\n\n');
 
     const fullSummary =
-      `🌿 My Adelaide Thrift Trail Itinerary (Demo Data)\n` +
+      `🌿 My Adelaide Thrift Trail Itinerary\n` +
       `Total Stops: ${savedStores.length}\n` +
-      `Note: Example demonstration store data — verify opening hours & prices directly before visiting.\n\n` +
+      `Note: Price tiers are indicative planning guides only — verify current opening hours & prices directly with each store before visiting.\n\n` +
       text +
       `\n\nPlanned with Thrift Trail Adelaide (https://emilyito99-spec.github.io/Thrift-Trail-Adelaideee/)`;
 
@@ -159,7 +159,11 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
                       <span aria-hidden="true">·</span>
                       <span>{store.region}</span>
                       <span aria-hidden="true">·</span>
-                      <span className="font-bold text-[#2F5233]">{store.priceTier} (Demo)</span>
+                      <span className="font-bold text-[#2F5233]">
+                        {store.priceTier === 'Not confirmed'
+                          ? 'Price Not Confirmed'
+                          : `${store.priceTier} (Indicative)`}
+                      </span>
                     </div>
 
                     <h3 className="font-editorial text-xl font-bold text-[#213B24]">
