@@ -155,7 +155,7 @@ export const GUIDES_DATA: GuideArticle[] = [
     keyTakeaways: [
       'Define 3 core words for your daily uniform before visiting any store',
       'Pay attention to garment drape, armhole fit, and fabric weight rather than modern numerical sizes',
-      'Mix 70% functional basics with 30% vintage statement pieces for effortless styling',
+      'Pair everyday functional basics with a few vintage statement pieces for effortless styling',
     ],
     contentSections: [
       {
@@ -196,18 +196,18 @@ export const GUIDES_DATA: GuideArticle[] = [
     imageUrl: storeOpShopImg,
     summary: 'Living out of home or studying on a budget? Here is the tactical guide to shopping Adelaide charity stores, timing discount days, and scoring true bargains.',
     keyTakeaways: [
-      'Take advantage of recurring student discounts: Salvos 20% off Wednesdays and color tag rotation days',
-      'Suburban charity shops near established neighborhoods yield higher-end donated labels',
+      'Ask in-store about student discount days, loyalty clubs, and rotating colour-tag markdowns',
+      'Suburban charity shops near established neighborhoods often stock quality everyday and workwear donations',
       'Go with a defined shopping list rather than browsing aimlessly',
     ],
     contentSections: [
       {
-        heading: 'Adelaide Op Shop Discount Calendar',
+        heading: 'How Op Shop Discounts & Markdowns Typically Work',
         paragraphs: [
-          'Most major charity shops in Adelaide follow consistent markdown schedules that seasoned thrifters swear by:',
-          '• Salvos Stores: Wednesday is dedicated Student Day in South Australia, offering 20% off with your current uni or TAFE student ID card.',
-          '• Vinnies & Red Cross: Use a 4-colour plastic tag rotation. Every Monday, garments marked with the week’s designated colour tag are discounted by 50% or down to $3–$5.',
-          '• Savers Churchill Centre: Join the free loyalty program on your phone to unlock 20% to 50% off during seasonal student sales.',
+          'Many charity shops and large thrift stores in Adelaide run periodic markdowns, though schedules and eligibility can change. Always check in-store signage or official store pages before visiting:',
+          '• Student Discount Days: Some charity op shops offer student discounts on selected days with a valid university or TAFE student ID card—ask staff at the counter when these run.',
+          '• Colour-Tag Rotations: Several op shops use coloured price tags to mark down older stock on a rotating schedule.',
+          '• Store Loyalty Programs: Larger thrift retailers often run free member clubs that announce seasonal sales via email or SMS.',
         ],
       },
       {
@@ -222,7 +222,7 @@ export const GUIDES_DATA: GuideArticle[] = [
       {
         heading: 'The 10-Minute Store Scan Routine',
         paragraphs: [
-          'Instead of checking every single hangar in a 3,000-item store, scan with your hands and eyes simultaneously. Touch the fabrics: high quality natural fibres (heavy cotton, soft wool, crisp linen) immediately feel distinct from flimsy synthetic polyester.',
+          'Instead of checking every single hanger in a large second-hand store, scan with your hands and eyes simultaneously. Touch the fabrics: natural fibres (heavy cotton, wool, crisp linen) feel distinct from lightweight synthetic polyester.',
           'Scan the outerwear and denim racks first, as these offer the highest return on investment compared to buying new retail clothing.',
         ],
       },
@@ -231,7 +231,7 @@ export const GUIDES_DATA: GuideArticle[] = [
   {
     id: 'fabric-and-garment-longevity-guide',
     title: 'Fabric & Garment Longevity: Reading Tags & Spotting Quality',
-    subtitle: 'How to spot 100% natural fibres, evaluate stitching, and give second-hand finds a new lease of life.',
+    subtitle: 'How to spot natural fibres, evaluate stitching, and give second-hand finds a new lease of life.',
     readTime: '7 min read',
     category: 'Sustainable Care',
     imageUrl: heroThriftImg,
@@ -239,16 +239,16 @@ export const GUIDES_DATA: GuideArticle[] = [
     keyTakeaways: [
       'Prioritise natural fibres: Australian wool, linen, pure silk, and heavyweight cotton',
       'Check armpit seams, collar edges, and zipper teeth before purchasing',
-      'Gentle cold washing and air drying prolongs vintage garments by over 500%',
+      'Gentle cold washing and air drying helps vintage garments last significantly longer',
     ],
     contentSections: [
       {
         heading: 'The Natural Fibre Cheat Sheet',
         paragraphs: [
-          'Fast fashion relies heavily on virgin polyester and acrylic, which shed microplastics and pill rapidly after a few washes. Vintage clothing excels because mid-to-late 20th century garments utilized significantly more natural raw materials:',
-          '• Wool & Merino: Adelaide op shops are goldmines for Australian wool. Wool is naturally odour-resistant, temperature-regulating, and exceptionally durable.',
-          '• Linen: Look for vintage linen shirts and trousers. Linen softens beautifully with age and provides unmatched breathability during Adelaide summers.',
-          '• 100% Cotton: Check the weight. Vintage cotton tees from the 1990s usually feature 200+ GSM jersey with thick ribbed neckbands that do not bacon.',
+          'Fast fashion relies heavily on virgin polyester and acrylic, which can pill quickly after repeated wears. Many older vintage garments were made using more natural raw materials:',
+          '• Wool & Merino: Adelaide op shops often carry wool knitwear and coats. Wool is naturally breathable, warm, and durable when cared for properly.',
+          '• Linen: Look for vintage linen shirts and trousers. Linen softens with age and provides comfortable breathability during Adelaide summers.',
+          '• Pure Cotton: Check the fabric weight and stitching. Many 1990s vintage tees feature heavier-weight cotton jersey with thick ribbed neckbands that hold their shape well.',
         ],
       },
       {

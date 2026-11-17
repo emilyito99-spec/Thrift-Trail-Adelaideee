@@ -44,10 +44,11 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
       .join('\n\n');
 
     const fullSummary =
-      `🌿 My Adelaide Thrift Trail Itinerary\n` +
-      `Total Stops: ${savedStores.length}\n\n` +
+      `🌿 My Adelaide Thrift Trail Itinerary (Demo Data)\n` +
+      `Total Stops: ${savedStores.length}\n` +
+      `Note: Example demonstration store data — verify opening hours & prices directly before visiting.\n\n` +
       text +
-      `\n\nCurated with Thrift Trail Adelaide (https://emilyito99-spec.github.io/Thrift-Trail-Adelaideee/)`;
+      `\n\nPlanned with Thrift Trail Adelaide (https://emilyito99-spec.github.io/Thrift-Trail-Adelaideee/)`;
 
     navigator.clipboard.writeText(fullSummary);
     setCopied(true);
@@ -158,7 +159,7 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
                       <span aria-hidden="true">·</span>
                       <span>{store.region}</span>
                       <span aria-hidden="true">·</span>
-                      <span className="font-bold text-[#2F5233]">{store.priceTier}</span>
+                      <span className="font-bold text-[#2F5233]">{store.priceTier} (Demo)</span>
                     </div>
 
                     <h3 className="font-editorial text-xl font-bold text-[#213B24]">

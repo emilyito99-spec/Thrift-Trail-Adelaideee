@@ -182,8 +182,21 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
           Second hand clothing Adelaide: Store Directory
         </h1>
         <p className="text-xs sm:text-sm text-[#585047] mt-1 max-w-2xl leading-relaxed">
-          Filter and compare curated vintage clothing stores, independent boutiques and community charity op shops across Adelaide by price tier, clothing aesthetic, and transit ease.
+          Filter and compare example curated vintage stores, independent boutiques, and community charity op shops across Adelaide by style, indicative price tier, and transit access.
         </p>
+      </div>
+
+      {/* Prominent Demonstration Data Notice */}
+      <div className="p-4 bg-[#FAF7F2] border border-[#C06443]/40 rounded-lg flex items-start gap-3 text-xs text-[#585047]">
+        <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
+        <div>
+          <p className="font-semibold text-[#213B24]">
+            Demonstration Store Directory Notice
+          </p>
+          <p className="mt-0.5 leading-relaxed">
+            The store profiles, indicative price ranges, opening hours, and student discount notes below are example demonstration data created for a Master&apos;s Digital Marketing project. Please confirm real-time prices, trading hours, and any discounts directly with each store before visiting.
+          </p>
+        </div>
       </div>
 
       {/* Search & Main Filter Controls */}
@@ -351,7 +364,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
                 onChange={(e) => setOnlyStudentDiscount(e.target.checked)}
                 className="w-3.5 h-3.5 rounded border-[#E8DFD5] text-[#2F5233] focus:ring-[#2F5233]"
               />
-              <span>Student Discount Perks Only</span>
+              <span>Demo Student Perks Listed</span>
             </label>
           </div>
 
@@ -423,7 +436,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
       {/* Demonstration notice reminder */}
       <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] text-xs text-[#7A7167] flex items-center justify-between gap-4">
         <p>
-          <strong>Notice:</strong> Indicative prices and trading hours are educational references for our university digital marketing project. Always verify operating hours directly before traveling.
+          <strong>Demonstration Data Notice:</strong> All store listings, indicative price tiers, student perks, and opening hours are illustrative examples for a Master&apos;s Digital Marketing project. Always confirm current details directly with stores before travelling.
         </p>
       </div>
 

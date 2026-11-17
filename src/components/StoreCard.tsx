@@ -67,7 +67,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({
 
           {/* Price Tier Overlay at bottom right */}
           <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-xs text-white text-xs font-semibold px-2 py-0.5 rounded">
-            {store.priceTier} · {store.priceTier === '$' ? 'Budget' : store.priceTier === '$$' ? 'Moderate' : store.priceTier === '$$$' ? 'Curated' : 'Archive'}
+            {store.priceTier} · {store.priceTier === '$' ? 'Budget' : store.priceTier === '$$' ? 'Moderate' : store.priceTier === '$$$' ? 'Curated' : 'Archive'} (Demo)
           </div>
         </div>
 
@@ -97,7 +97,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({
 
           {/* Indicative Price Range note */}
           <div className="text-xs font-medium text-[#213B24] mb-3">
-            Indicative: <span className="text-[#585047] font-normal">{store.indicativePriceRange}</span>
+            Indicative (Demo): <span className="text-[#585047] font-normal">{store.indicativePriceRange}</span>
           </div>
 
           {/* Public Transit snippet */}

@@ -320,14 +320,14 @@ export const GuidesPage: React.FC<GuidesPageProps> = ({
             Have a thrift route suggestion or student tip?
           </h3>
           <p className="text-xs text-[#585047]">
-            This project welcomes feedback from South Australian university students to expand our local transit itineraries.
+            This Master&apos;s Digital Marketing project welcomes feedback from Adelaide shoppers and students to improve our guides and store directory.
           </p>
         </div>
         <button
           onClick={() => onNavigate('about')}
           className="px-4.5 py-2.5 text-xs font-semibold text-[#213B24] bg-white border border-[#E8DFD5] rounded hover:bg-[#FAF7F2] transition-colors whitespace-nowrap cursor-pointer"
         >
-          Learn More About Our Research
+          About the Master&apos;s Project
         </button>
       </div>
     </div>

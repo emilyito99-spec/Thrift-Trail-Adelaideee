@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </span>
             </div>
             <p className="text-xs leading-relaxed text-[#585047]">
-              A university Digital Marketing capstone project connecting young adults and students in South Australia with curated vintage clothing stores and community op shops.
+              A Master&apos;s Digital Marketing subject project connecting young adults and students in South Australia with second-hand and vintage clothing store discovery.
             </p>
             <p className="text-xs text-[#7A7167]">
               Adelaide, South Australia · 2026
@@ -153,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('find-stores')}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Student Budget Op Shops (Under $20)
+                  Student Budget Op Shops (Budget Tier)
                 </button>
               </li>
             </ul>
@@ -166,7 +166,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span>Project Transparency</span>
             </h4>
             <p className="text-xs leading-relaxed text-[#585047]">
-              This is a digital marketing discovery and comparison tool, not an e-commerce platform. All links redirect to official store pages or verified demonstration references.
+              This is a digital marketing discovery and comparison tool, not an e-commerce platform. All links redirect to official store pages or example demonstration references.
             </p>
             <div className="text-[11px] text-[#7A7167] bg-[#FAF7F2] p-2.5 rounded border border-[#E8DFD5]">
               Google Analytics 4 (GA4) measurement ready for academic performance review.
@@ -179,7 +179,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="flex items-start gap-2 max-w-3xl">
             <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
             <p className="text-[11px] leading-relaxed">
-              <strong>Demonstration Data Disclosure:</strong> Store details, indicative prices, hours, and features are compiled as representative demonstration data for a university marketing project. We do not invent promotional discounts, real-time stock availability, or fake user reviews. Please confirm exact trading times directly with stores before traveling.
+              <strong>Demonstration Data Disclosure:</strong> Store details, indicative prices, student discount notes, and opening hours are example demonstration data created for a Master&apos;s Digital Marketing project. We do not claim live stock availability, verified promotions, or customer reviews. Please confirm exact details directly with stores before travelling.
             </p>
           </div>
           <p className="text-[11px] shrink-0">

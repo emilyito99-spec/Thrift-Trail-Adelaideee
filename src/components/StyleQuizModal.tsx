@@ -133,30 +133,30 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 What is your target budget per garment?
               </h3>
               <p className="text-xs text-[#585047]">
-                We will match stores whose indicative price tags match your student wallet.
+                We will filter example stores using indicative demonstration price tiers.
               </p>
 
               <div className="space-y-2.5 pt-2">
                 {[
                   {
                     tier: '$' as PriceTier,
-                    title: '$ Budget Thrifting ($5 – $20)',
-                    desc: 'Community charity op shops (Vinnies, Red Cross, Salvos, Savers). Maximum pieces for minimum spend.',
+                    title: '$ Budget Thrifting (Demo tier: $)',
+                    desc: 'Community charity op shops and large thrift stores geared toward everyday budget finds.',
                   },
                   {
                     tier: '$$' as PriceTier,
-                    title: '$$ Moderate Vintage Mix ($20 – $50)',
+                    title: '$$ Moderate Vintage Mix (Demo tier: $$)',
                     desc: 'Curated market stalls, preloved collectives, and mid-range vintage boutiques.',
                   },
                   {
                     tier: '$$$' as PriceTier,
-                    title: '$$$ Curated Vintage ($50 – $120)',
-                    desc: 'Hand-picked authentic vintage, vintage leather, verified single-stitch 90s tees, and heritage denim.',
+                    title: '$$$ Curated Vintage (Demo tier: $$$)',
+                    desc: 'Hand-picked vintage racks, leather outerwear, retro tees, and heritage denim.',
                   },
                   {
                     tier: '$$$$' as PriceTier,
-                    title: '$$$$ Designer Archive ($120+)',
-                    desc: 'Consignment luxury labels, archival Australian designer pieces, and authenticated collector wear.',
+                    title: '$$$$ Designer Archive (Demo tier: $$$$)',
+                    desc: 'Consignment luxury labels, archival designer pieces, and investment wardrobe staples.',
                   },
                 ].map((item) => (
                   <button

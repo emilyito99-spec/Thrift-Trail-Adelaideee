@@ -133,7 +133,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       icon: HelpCircle,
       title: 'Ask Questions',
       description:
-        'Curious about our university Digital Marketing project, sustainable fashion tips, or how Thrift Trail Adelaide works?',
+        'Curious about our Master’s Digital Marketing project, sustainable fashion tips, or how Thrift Trail Adelaide works?',
     },
   ];
 

@@ -31,7 +31,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           About Thrift Trail Adelaide
         </h1>
         <p className="text-sm sm:text-base text-[#585047] mt-3 leading-relaxed">
-          A sustainability-focused university Digital Marketing project designed to help students and young adults aged 18–30 discover, compare, and navigate second-hand clothing stores in Adelaide.
+          A sustainability-focused project created for a Master&apos;s Digital Marketing subject to help students and young adults aged 18–30 discover, compare, and navigate second-hand clothing stores in Adelaide.
         </p>
       </div>
 
@@ -45,13 +45,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Academic Context
           </span>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-            Born from a university digital marketing project plan.
+            Built for a Master&apos;s Digital Marketing project plan.
           </h2>
           <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            This project originated as an honours-level digital marketing capstone analyzing consumer friction in the South Australian circular fashion ecosystem.
+            This website was developed as part of a Master&apos;s Digital Marketing subject to explore how clear store discovery and comparison tools can reduce friction in Adelaide&apos;s second-hand clothing scene.
           </p>
           <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            While Generation Z and Millennials in Adelaide express high demand for sustainable apparel, shopping second-hand often involves high search costs: confusing price tags, fragmented social media listings, and wasted public transit trips to stores with the wrong aesthetic.
+            Many students and young adults in Adelaide want more affordable and sustainable wardrobe options, yet second-hand shopping can involve extra search effort: unclear price expectations, scattered social media pages, and wasted transit trips to stores that do not match their preferred style.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 1. "Op Shop vs Curated Vintage" Pricing Ambiguity
               </span>
               <p className="text-[#585047] leading-relaxed">
-                Shoppers frequently confuse $5 charity shops with $120 curated vintage boutiques. Thrift Trail provides clear indicative price tiers ($ to $$$$) before visitors travel.
+                Shoppers may not know in advance how prices differ between charity op shops and curated vintage boutiques. Thrift Trail provides clear indicative price tiers ($ to $$$$) as a planning guide before visitors travel.
               </p>
             </div>
 
@@ -96,50 +96,50 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="max-w-2xl space-y-3">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#EBF2EC]/80 uppercase tracking-wider">
             <Leaf className="w-4 h-4 text-[#EBF2EC]" />
-            <span>Environmental & Circular Economy Goals</span>
+            <span>Environmental &amp; Circular Economy Goals</span>
           </div>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold leading-tight">
-            Tackling fast fashion waste in South Australia.
+            Encouraging second-hand fashion in South Australia.
           </h2>
           <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-            Australia is the world's second-highest consumer of textiles per capita, discarding over 200,000 tonnes of clothing to landfill every single year.
+            Fast fashion encourages frequent garment turnover and textile waste. Supporting op shops and vintage stores across Adelaide promotes garment reuse, lowers demand for newly produced clothing, and makes sustainable fashion easier to navigate.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1">
-            <span className="font-editorial text-3xl font-bold tabular-nums text-white block">
-              73%
+          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
+            <span className="font-editorial text-lg font-bold text-white block">
+              Circular Reuse
             </span>
-            <p className="text-xs text-white/80 leading-snug">
-              Reduction in personal carbon footprint when purchasing pre-owned clothing instead of new retail.
+            <p className="text-xs text-white/80 leading-relaxed">
+              Keeping wearable second-hand garments in circulation instead of defaulting to brand-new fast fashion.
             </p>
           </div>
 
-          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1">
-            <span className="font-editorial text-3xl font-bold tabular-nums text-white block">
-              2,700 L
+          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
+            <span className="font-editorial text-lg font-bold text-white block">
+              Lower New Demand
             </span>
-            <p className="text-xs text-white/80 leading-snug">
-              Water conserved per diverted cotton garment — crucial for South Australia's arid climate.
+            <p className="text-xs text-white/80 leading-relaxed">
+              Buying pre-loved clothing reduces the need for additional water, energy, and raw textile manufacturing.
             </p>
           </div>
 
-          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1">
-            <span className="font-editorial text-3xl font-bold tabular-nums text-white block">
-              $1.2M+
+          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
+            <span className="font-editorial text-lg font-bold text-white block">
+              Community Value
             </span>
-            <p className="text-xs text-white/80 leading-snug">
-              Annual funding generated by Adelaide charity op shops for crisis food and emergency housing.
+            <p className="text-xs text-white/80 leading-relaxed">
+              Charity op shops help support local community programs while vintage stores support independent local sellers.
             </p>
           </div>
 
-          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1">
-            <span className="font-editorial text-3xl font-bold tabular-nums text-white block">
-              100%
+          <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
+            <span className="font-editorial text-lg font-bold text-white block">
+              Smarter Planning
             </span>
-            <p className="text-xs text-white/80 leading-snug">
-              Support for local Adelaide circular economy merchants and independent vintage collectors.
+            <p className="text-xs text-white/80 leading-relaxed">
+              Comparing styles, indicative price tiers, and transit options helps shoppers avoid disappointing trips.
             </p>
           </div>
         </div>
@@ -152,10 +152,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Digital Marketing Architecture
           </span>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-            SEO Strategy & Performance Measurement
+            SEO Strategy &amp; Performance Measurement
           </h2>
           <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            As part of our academic marketing plan, this platform demonstrates production SEO optimization and analytics readiness:
+            As part of our Master&apos;s Digital Marketing project plan, this platform demonstrates practical SEO structure and analytics readiness:
           </p>
         </div>
 
@@ -207,20 +207,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               Demonstration Data & Academic Integrity Notice
             </h3>
             <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-              In accordance with our digital marketing project guidelines:
+              In accordance with our Master&apos;s Digital Marketing project guidelines:
             </p>
             <ul className="space-y-1.5 text-xs text-[#585047] list-disc list-inside">
               <li>
-                All store profiles in this prototype utilize verified Adelaide store locations and neighborhood precincts.
+                Store profiles in this prototype are clearly labelled demonstration examples representing Adelaide shopping precincts and store types.
               </li>
               <li>
-                Indicative price ranges, typical garment finds, and visitor tips are clearly labelled demonstration models.
+                Indicative price ranges, opening hours, student discount notes, and typical garment finds are illustrative demonstration data—please verify current details directly with each store.
               </li>
               <li>
-                We do not fabricate real-time stock levels, commercial promotional codes, or fake customer testimonials.
+                We do not invent live stock availability, commercial promotions, or fabricated customer reviews.
               </li>
               <li>
-                This platform is purely an educational store discovery and comparison guide, not an online shopping or transactional marketplace.
+                This website is an educational store discovery and comparison guide, not an online shopping or e-commerce platform.
               </li>
             </ul>
           </div>

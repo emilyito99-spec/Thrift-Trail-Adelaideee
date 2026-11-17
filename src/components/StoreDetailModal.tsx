@@ -129,12 +129,12 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
         <div className="p-6 sm:p-8 space-y-6 max-h-[calc(85vh-18rem)] overflow-y-auto">
           {/* Demonstration Notice Box */}
           {store.isDemonstrationData && (
-            <div className="flex items-start gap-3 p-3.5 bg-[#FAF7F2] rounded-md border border-[#E8DFD5] text-xs text-[#585047]">
+            <div className="flex items-start gap-3 p-3.5 bg-[#FAF7F2] rounded-md border border-[#C06443]/40 text-xs text-[#585047]">
               <AlertCircle className="w-4 h-4 text-[#C06443] shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-[#213B24]">Demonstration Store Profile</p>
+                <p className="font-semibold text-[#213B24]">Demonstration Store Profile (Unverified Example Data)</p>
                 <p className="text-[#7A7167] mt-0.5 leading-relaxed">
-                  Store details, styles, and indicative price guidelines are curated for university research and project demonstration. Trading hours and stock vary—please verify with the store directly.
+                  Indicative prices, opening hours, student discount notes, and typical finds are example demonstration data for a Master&apos;s Digital Marketing project. Please confirm real trading details directly with the store before visiting.
                 </p>
               </div>
             </div>
@@ -145,11 +145,11 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             <div className="p-3.5 bg-[#F4EFEA] rounded-md space-y-1.5">
               <div className="flex items-center gap-1.5 font-semibold text-[#213B24]">
                 <DollarSign className="w-4 h-4 text-[#2F5233]" />
-                <span>Indicative Price Range</span>
+                <span>Indicative Price Range (Demo)</span>
               </div>
               <p className="text-[#585047]">{store.indicativePriceRange}</p>
               <p className="text-[11px] text-[#7A7167]">
-                Budget benchmark for students comparing op shops vs boutique vintage.
+                Illustrative price guide for comparing op shops and vintage stores.
               </p>
             </div>
 
@@ -203,7 +203,7 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             <div className="space-y-2">
               <h3 className="text-xs font-bold text-[#213B24] uppercase tracking-wider flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-[#2F5233]" />
-                <span>Opening Hours Guide</span>
+                <span>Opening Hours (Demo Example)</span>
               </h3>
               <div className="text-xs text-[#585047] space-y-1">
                 <div className="flex justify-between">
@@ -225,19 +225,19 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
           {/* In-Store Amenities & Student Perks */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Fitting Rooms:</span>
+              <span className="text-[#7A7167] block text-[11px]">Fitting Rooms (Demo):</span>
               <span className="font-semibold text-[#213B24]">
                 {store.fittingRooms ? 'Available in-store' : 'Not available'}
               </span>
             </div>
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Sell / Consign / Trade:</span>
+              <span className="text-[#7A7167] block text-[11px]">Sell / Consign (Demo):</span>
               <span className="font-semibold text-[#213B24]">
                 {store.clothingTradeIn ? 'Accepts trade-in/consignment' : 'Donations only'}
               </span>
             </div>
             <div className="p-3 bg-[#FAF7F2] rounded border border-[#E8DFD5]">
-              <span className="text-[#7A7167] block text-[11px]">Student Perk:</span>
+              <span className="text-[#7A7167] block text-[11px]">Student Perk (Demo):</span>
               <span className="font-semibold text-[#213B24]">
                 {store.studentDiscount || 'Standard pricing'}
               </span>

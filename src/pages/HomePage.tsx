@@ -78,7 +78,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-7 space-y-6">
               {/* Unboxed Metadata Kicker */}
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#2F5233]">
-                <span>University Digital Marketing Project</span>
+                <span>Master&apos;s Digital Marketing Project</span>
                 <span aria-hidden="true">·</span>
                 <span>Adelaide Sustainable Fashion</span>
               </div>
@@ -97,7 +97,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1 text-xs text-[#585047]">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
-                  <span>Indicative price guides from $5 to $120+</span>
+                  <span>Demo price tiers from budget ($) to archive ($$$$)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
@@ -141,9 +141,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 text-white p-2">
-                  <div className="text-[11px] font-medium text-white/90">Curated Local Fashion</div>
+                  <div className="text-[11px] font-medium text-white/90">Circular Fashion</div>
                   <p className="font-editorial text-sm font-semibold">
-                    Second hand shopping saves up to 2,700 litres of water per cotton t-shirt.
+                    Choosing pre-loved clothing extends garment lifespans and reduces demand for newly manufactured fast fashion.
                   </p>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               No more disappointing thrift trips across Adelaide.
             </h2>
             <p className="text-xs sm:text-sm text-[#585047] mt-2">
-              Our university project survey revealed that 73% of Adelaide students spend over 2 hours traveling to op shops that end up having the wrong clothing aesthetic or inflated prices. We solved that.
+              Shopping second-hand in Adelaide can feel hit-and-miss when you do not know a store&apos;s style focus or typical price bracket in advance. Thrift Trail Adelaide helps you compare example store profiles before heading out.
             </p>
           </div>
 
@@ -173,10 +173,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <DollarSign className="w-5 h-5" />
               </div>
               <h3 className="font-editorial text-lg font-bold text-[#213B24]">
-                Realistic Price Benchmarks
+                Indicative Price Guides
               </h3>
               <p className="text-xs text-[#585047] leading-relaxed">
-                Know whether a shop sells $8 community charity shirts or $90 curated vintage streetwear jackets before you step on the bus.
+                Compare lower-priced community charity op shops against higher-priced curated vintage boutiques before you travel.
               </p>
             </div>
 
@@ -215,10 +215,10 @@ export const HomePage: React.FC<HomePageProps> = ({
               Top Curated Spotlights
             </span>
             <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-              Vintage clothing Adelaide: Popular picks
+              Vintage clothing Adelaide: Example store profiles
             </h2>
             <p className="text-xs sm:text-sm text-[#585047] mt-1">
-              Explore standout vintage boutiques and beloved Adelaide community charity shops.
+              Demonstration profiles showing how you can compare curated vintage boutiques and charity op shops in Adelaide.
             </p>
           </div>
           <button
@@ -289,62 +289,62 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* Sustainability Impact Metrics Bar */}
+      {/* Sustainability Impact Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#213B24] text-white rounded-xl p-8 sm:p-12 relative overflow-hidden">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-3">
+            <div className="lg:col-span-6 space-y-3">
               <span className="text-xs font-semibold text-[#EBF2EC]/80 uppercase tracking-wider block">
-                The Sustainability Case
+                Why Second-Hand Matters
               </span>
               <h2 className="font-editorial text-2xl sm:text-3xl font-bold leading-tight">
-                Second-hand fashion is Adelaide's easiest climate action.
+                A practical step toward circular fashion in Adelaide.
               </h2>
               <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-xl">
-                Australians consume 56 new garments per person each year—second highest per capita globally. Choosing preloved clothing extends garment lifespans by an average of 2.2 years, reducing carbon and water footprints by 73%.
+                Buying pre-loved clothing helps keep wearable garments in circulation longer, reduces demand for newly manufactured fast fashion, and lets students explore personal style on a realistic budget.
               </p>
               <div className="pt-2">
                 <button
                   onClick={() => onNavigate('about')}
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-white underline underline-offset-4 hover:text-[#FAF7F2] cursor-pointer"
                 >
-                  <span>Read our university research & project goals</span>
+                  <span>Read about our Master&apos;s project &amp; sustainability goals</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white/10 backdrop-blur-xs p-4 rounded-lg border border-white/15">
-                <span className="font-editorial text-2xl sm:text-3xl font-bold block tabular-nums text-white">
-                  2,700 L
+                <span className="font-editorial text-base sm:text-lg font-bold block text-white">
+                  Less Textile Waste
                 </span>
-                <span className="text-[11px] text-white/80 leading-tight block mt-1">
-                  Water saved per second-hand cotton shirt purchased
+                <span className="text-xs text-white/80 leading-relaxed block mt-1">
+                  Extending the useful life of existing clothing helps keep wearable items out of landfill.
                 </span>
               </div>
               <div className="bg-white/10 backdrop-blur-xs p-4 rounded-lg border border-white/15">
-                <span className="font-editorial text-2xl sm:text-3xl font-bold block tabular-nums text-white">
-                  23 kg
+                <span className="font-editorial text-base sm:text-lg font-bold block text-white">
+                  Lower Resource Demand
                 </span>
-                <span className="text-[11px] text-white/80 leading-tight block mt-1">
-                  Average textiles sent to landfill per Australian annually
-                </span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-xs p-4 rounded-lg border border-white/15">
-                <span className="font-editorial text-2xl sm:text-3xl font-bold block tabular-nums text-white">
-                  $350+
-                </span>
-                <span className="text-[11px] text-white/80 leading-tight block mt-1">
-                  Average yearly wardrobe savings for student thrifters
+                <span className="text-xs text-white/80 leading-relaxed block mt-1">
+                  Reusing pre-owned garments avoids the water, dyes, and energy needed to make brand-new clothes.
                 </span>
               </div>
               <div className="bg-white/10 backdrop-blur-xs p-4 rounded-lg border border-white/15">
-                <span className="font-editorial text-2xl sm:text-3xl font-bold block tabular-nums text-white">
-                  100%
+                <span className="font-editorial text-base sm:text-lg font-bold block text-white">
+                  Budget-Friendly Style
                 </span>
-                <span className="text-[11px] text-white/80 leading-tight block mt-1">
-                  Adelaide charity op shop proceeds support community aid
+                <span className="text-xs text-white/80 leading-relaxed block mt-1">
+                  Comparing op shops and vintage stores helps students find pieces that fit their style and budget.
+                </span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-xs p-4 rounded-lg border border-white/15">
+                <span className="font-editorial text-base sm:text-lg font-bold block text-white">
+                  Local Community Support
+                </span>
+                <span className="text-xs text-white/80 leading-relaxed block mt-1">
+                  Charity op shops help fund community services while vintage stores support independent local sellers.
                 </span>
               </div>
             </div>
@@ -360,10 +360,10 @@ export const HomePage: React.FC<HomePageProps> = ({
               Thrifting Education
             </span>
             <h2 className="font-editorial text-2xl font-bold text-[#213B24]">
-              Master tag reading, wool care & student discount schedules
+              Learn tag reading, fabric care &amp; second-hand shopping tips
             </h2>
             <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-              Read our comprehensive student guides on spotting 100% Australian wool, avoiding synthetic polyester traps, and car-free tram routes across Adelaide.
+              Read our student guides on spotting natural fibres like wool and linen, comparing op shops and vintage stores, and planning tram-friendly routes across Adelaide.
             </p>
           </div>
           <button
