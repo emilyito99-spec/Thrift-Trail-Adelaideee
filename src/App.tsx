@@ -119,7 +119,7 @@ export default function App() {
         title = 'Thrift Guides & Student Playbook | Thrift Trail Adelaide';
       }
     } else if (currentPage === 'about') {
-      title = 'About Project & Sustainability Mission | Thrift Trail Adelaide';
+      title = 'About Us | Thrift Trail Adelaide';
     } else if (currentPage === 'my-trail') {
       title = 'My Adelaide Thrift Trail Itinerary | Thrift Trail Adelaide';
     } else if (currentPage === 'contact') {

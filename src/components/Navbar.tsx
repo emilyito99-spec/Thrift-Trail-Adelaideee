@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 currentPage === 'about' ? 'text-[#213B24] font-semibold underline underline-offset-8 decoration-[#2F5233] decoration-2' : ''
               }`}
             >
-              About Project
+              About Us
             </button>
             <button
               onClick={() => handleNav('contact')}
@@ -166,7 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               currentPage === 'about' ? 'bg-[#EBF2EC] text-[#213B24] font-semibold' : 'text-[#585047]'
             }`}
           >
-            About & Sustainability Mission
+            About Us
           </button>
           <button
             onClick={() => handleNav('contact')}

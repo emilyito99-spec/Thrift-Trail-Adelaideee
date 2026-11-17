@@ -2,15 +2,12 @@ import React from 'react';
 import { PageRoute } from '../types';
 import {
   Compass,
-  GraduationCap,
   Leaf,
-  Target,
-  BarChart3,
-  AlertCircle,
   ArrowRight,
-  Sparkles,
-  Users,
   ShieldCheck,
+  Tag,
+  DollarSign,
+  MapPin,
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -25,94 +22,109 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="flex items-center gap-2 text-xs text-[#7A7167] mb-2 font-medium">
           <span>Home</span>
           <span aria-hidden="true">/</span>
-          <span className="text-[#2F5233]">About Project</span>
+          <span className="text-[#2F5233]">About Us</span>
         </div>
         <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-[#213B24] tracking-tight leading-tight">
-          About Thrift Trail Adelaide
+          About Us
         </h1>
         <p className="text-sm sm:text-base text-[#585047] mt-3 leading-relaxed">
-          A sustainability-focused project created for a Master&apos;s Digital Marketing subject to help students and young adults aged 18–30 discover, compare, and navigate second-hand clothing stores in Adelaide.
+          Thrift Trail Adelaide is a local store guide built to make finding second-hand clothing and vintage fashion across Adelaide simpler, clearer, and more enjoyable.
         </p>
       </div>
 
-      {/* Project Background & Problem Section */}
+      {/* Why We Created Thrift Trail & How It Helps */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-5 space-y-4">
           <div className="w-10 h-10 rounded-full bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center">
-            <GraduationCap className="w-5 h-5" />
+            <Compass className="w-5 h-5" />
           </div>
           <span className="text-xs font-semibold text-[#2F5233] uppercase tracking-wider block">
-            Academic Context
+            Our Story
           </span>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-            Built for a Master&apos;s Digital Marketing project plan.
+            Why we created Thrift Trail Adelaide.
           </h2>
           <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            This website was developed as part of a Master&apos;s Digital Marketing subject to explore how clear store discovery and comparison tools can reduce friction in Adelaide&apos;s second-hand clothing scene.
+            Adelaide has a great mix of community op shops, curated vintage boutiques, and indoor pre-loved markets—but discovering where to go often means piecing together scattered websites, social pages, and word-of-mouth tips.
           </p>
           <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            Many students and young adults in Adelaide want more affordable and sustainable wardrobe options, yet second-hand shopping can involve extra search effort: unclear price expectations, scattered social media pages, and wasted transit trips to stores that do not match their preferred style.
+            Too often, shoppers travel across town only to realise a store leans toward high-end collector pieces when they wanted everyday budget basics, or carries tailored vintage when they were hoping for 90s streetwear. Thrift Trail Adelaide brings key store details together in one place so you can plan smarter before heading out.
           </p>
         </div>
 
         <div className="lg:col-span-7 bg-white p-8 rounded-xl border border-[#E8DFD5] space-y-6 shadow-xs">
           <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-            The 3 Core Consumer Frictions We Address
+            How Thrift Trail Helps You Plan Your Trip
           </h3>
 
           <div className="space-y-4 text-xs sm:text-sm">
-            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] space-y-1">
-              <span className="font-bold text-[#213B24] block">
-                1. "Op Shop vs Curated Vintage" Pricing Ambiguity
-              </span>
-              <p className="text-[#585047] leading-relaxed">
-                Shoppers may not know in advance how prices differ between charity op shops and curated vintage boutiques. Thrift Trail provides indicative price tiers ($ to $$$$ where online evidence exists, or Price Not Confirmed) as a planning guide before visitors travel.
-              </p>
+            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] flex items-start gap-3">
+              <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center shrink-0 mt-0.5">
+                <Tag className="w-4 h-4" />
+              </div>
+              <div className="space-y-1">
+                <span className="font-bold text-[#213B24] block">
+                  1. Match Stores to Your Personal Style
+                </span>
+                <p className="text-[#585047] leading-relaxed">
+                  Filter stores by the clothing styles they are known for—whether that is 90s &amp; Y2K streetwear, heritage workwear, 60s &amp; 70s retro, minimalist staples, or eclectic op shop racks.
+                </p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] space-y-1">
-              <span className="font-bold text-[#213B24] block">
-                2. Style Mismatch & Wasted Weekend Trips
-              </span>
-              <p className="text-[#585047] leading-relaxed">
-                Visiting a store expecting 90s streetwear only to find formal wear causes disappointment. We categorize each store by the clothing styles highlighted on its website or social channels.
-              </p>
+            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] flex items-start gap-3">
+              <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center shrink-0 mt-0.5">
+                <DollarSign className="w-4 h-4" />
+              </div>
+              <div className="space-y-1">
+                <span className="font-bold text-[#213B24] block">
+                  2. Compare Indicative Budget Levels
+                </span>
+                <p className="text-[#585047] leading-relaxed">
+                  Quickly tell affordable charity op shops apart from mid-range or specialist collector boutiques with indicative budget tiers ($ to $$$$, or Price Not Confirmed where online pricing isn&apos;t available).
+                </p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] space-y-1">
-              <span className="font-bold text-[#213B24] block">
-                3. Transit &amp; Precinct Planning
-              </span>
-              <p className="text-[#585047] leading-relaxed">
-                Many students depend on Adelaide Metro buses, trains, and the tram network. Each profile includes general precinct and nearby public transport corridor notes to help plan car-free trips.
-              </p>
+            <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] flex items-start gap-3">
+              <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center shrink-0 mt-0.5">
+                <MapPin className="w-4 h-4" />
+              </div>
+              <div className="space-y-1">
+                <span className="font-bold text-[#213B24] block">
+                  3. Browse by Location &amp; Public Transport
+                </span>
+                <p className="text-[#585047] leading-relaxed">
+                  Explore shops across the Adelaide CBD &amp; East End, Norwood, Unley &amp; Inner South, and Prospect, then save your favourites to build a walkable or public-transport-friendly trail route.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Adelaide Sustainability Impact */}
+      {/* Why Second-Hand Shopping Matters */}
       <section className="bg-[#213B24] text-white rounded-xl p-8 sm:p-12 space-y-8">
         <div className="max-w-2xl space-y-3">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#EBF2EC]/80 uppercase tracking-wider">
             <Leaf className="w-4 h-4 text-[#EBF2EC]" />
-            <span>Environmental &amp; Circular Economy Goals</span>
+            <span>Why Second-Hand Matters</span>
           </div>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold leading-tight">
-            Encouraging second-hand fashion in South Australia.
+            Giving great clothes a longer life in Adelaide.
           </h2>
           <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-            Fast fashion encourages frequent garment turnover and textile waste. Supporting op shops and vintage stores across Adelaide promotes garment reuse, lowers demand for newly produced clothing, and makes sustainable fashion easier to navigate.
+            Choosing pre-loved clothing is one of the simplest ways to build a personal wardrobe without constantly buying newly manufactured fast fashion. Every second-hand find keeps wearable garments in use and supports local communities.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
             <span className="font-editorial text-lg font-bold text-white block">
-              Circular Reuse
+              Less Textile Waste
             </span>
             <p className="text-xs text-white/80 leading-relaxed">
-              Keeping wearable second-hand garments in circulation instead of defaulting to brand-new fast fashion.
+              Keeping wearable garments in circulation helps extend their useful life and reduces clothing sent to landfill.
             </p>
           </div>
 
@@ -121,123 +133,38 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               Lower New Demand
             </span>
             <p className="text-xs text-white/80 leading-relaxed">
-              Buying pre-loved clothing reduces the need for additional water, energy, and raw textile manufacturing.
+              Reusing existing garments reduces the water, dyes, energy, and raw materials required to produce brand-new items.
             </p>
           </div>
 
           <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
             <span className="font-editorial text-lg font-bold text-white block">
-              Community Value
+              Community Support
             </span>
             <p className="text-xs text-white/80 leading-relaxed">
-              Charity op shops help support local community programs while vintage stores support independent local sellers.
+              Charity op shops help fund vital South Australian services, while vintage stores and markets support independent local sellers.
             </p>
           </div>
 
           <div className="bg-white/10 p-5 rounded-lg border border-white/15 space-y-1.5">
             <span className="font-editorial text-lg font-bold text-white block">
-              Smarter Planning
+              Distinctive Style
             </span>
             <p className="text-xs text-white/80 leading-relaxed">
-              Comparing styles, indicative price tiers, and transit options helps shoppers avoid disappointing trips.
+              Thrifting lets you experiment with heavier vintage fabrics, unique cuts, and one-off pieces that stand out from chain stores.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Digital Marketing Strategy & SEO Framework */}
-      <section className="space-y-6">
-        <div className="max-w-2xl space-y-2">
-          <span className="text-xs font-semibold text-[#2F5233] uppercase tracking-wider block">
-            Digital Marketing Architecture
-          </span>
-          <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#213B24]">
-            SEO Strategy &amp; Performance Measurement
-          </h2>
-          <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-            As part of our Master&apos;s Digital Marketing project plan, this platform demonstrates practical SEO structure and analytics readiness:
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
-          <div className="bg-white p-6 rounded-lg border border-[#E8DFD5] space-y-3">
-            <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center font-bold">
-              SEO
-            </div>
-            <h3 className="font-editorial text-base font-bold text-[#213B24]">
-              High-Intent Keyword Architecture
-            </h3>
-            <p className="text-xs text-[#585047] leading-relaxed">
-              Targeting primary search terms <em>"Second hand clothing Adelaide"</em> and <em>"Vintage clothing Adelaide"</em> with rich H1/H2 semantic hierarchy, local suburb entity signals, and structured Schema.org JSON-LD data.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg border border-[#E8DFD5] space-y-3">
-            <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center font-bold">
-              GA4
-            </div>
-            <h3 className="font-editorial text-base font-bold text-[#213B24]">
-              Google Analytics 4 Prepared
-            </h3>
-            <p className="text-xs text-[#585047] leading-relaxed">
-              Equipped with a custom event taxonomy tracking store profile views, multi-facet filter interactions, comparison drawer launches, and guide reading engagement.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg border border-[#E8DFD5] space-y-3">
-            <div className="w-8 h-8 rounded-md bg-[#EBF2EC] text-[#2F5233] flex items-center justify-center font-bold">
-              UX
-            </div>
-            <h3 className="font-editorial text-base font-bold text-[#213B24]">
-              Zero Friction Young Adult UX
-            </h3>
-            <p className="text-xs text-[#585047] leading-relaxed">
-              Designed specifically for mobile and desktop screens, zero pill clutter, high contrast typography (Fraunces & Plus Jakarta Sans), and zero dead-end user flows.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Store Data, Pricing & Academic Integrity Notice */}
-      <section className="bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl p-8 sm:p-10 space-y-4">
-        <div className="flex items-start gap-3">
-          <ShieldCheck className="w-6 h-6 text-[#2F5233] shrink-0 mt-0.5" />
-          <div className="space-y-2">
-            <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-              Store Data, Indicative Pricing &amp; Illustrative Photo Notice
-            </h3>
-            <p className="text-xs sm:text-sm text-[#585047] leading-relaxed">
-              In accordance with our Master&apos;s Digital Marketing project guidelines:
-            </p>
-            <ul className="space-y-1.5 text-xs text-[#585047] list-disc list-inside">
-              <li>
-                Store names, street addresses, and links are compiled from publicly available official store websites, charity directories, and official social pages across Adelaide.
-              </li>
-              <li>
-                Budget tiers ($ to $$$$) are indicative estimates only—not guaranteed price caps. Where insufficient public pricing details exist online, stores are labelled <strong>Price Not Confirmed</strong>.
-              </li>
-              <li>
-                Details that could not be verified online—such as unpublished opening hours, fitting room availability, or student discounts—are marked <strong>&ldquo;Check with the store&rdquo;</strong> rather than assumed.
-              </li>
-              <li>
-                Store photos are <strong>illustrative style images</strong> matched to each shop&apos;s clothing focus, not real interior or storefront photos of the businesses.
-              </li>
-              <li>
-                This website is an educational store discovery and comparison guide, not an online shopping or e-commerce platform.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Bottom Banner */}
+      {/* CTA Banner */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 bg-white border border-[#E8DFD5] rounded-xl">
         <div>
           <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-            Ready to explore Adelaide's second-hand scene?
+            Ready to explore Adelaide&apos;s second-hand scene?
           </h3>
           <p className="text-xs text-[#585047]">
-            Start comparing vintage stores and op shops in our interactive directory.
+            Filter vintage boutiques and op shops by style, indicative budget, and suburb in our directory.
           </p>
         </div>
         <button
@@ -248,6 +175,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
+
+      {/* Small Project & Store Information Notice */}
+      <section className="bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl p-6 sm:p-8">
+        <div className="flex items-start gap-3">
+          <ShieldCheck className="w-5 h-5 text-[#2F5233] shrink-0 mt-0.5" />
+          <div className="space-y-2">
+            <h3 className="font-editorial text-base sm:text-lg font-bold text-[#213B24]">
+              A Quick Note on Store Information &amp; Photos
+            </h3>
+            <ul className="space-y-1.5 text-xs text-[#585047] list-disc list-inside leading-relaxed">
+              <li>
+                Thrift Trail Adelaide was originally created as a university project to make discovering local second-hand clothing stores easier.
+              </li>
+              <li>
+                Budget tiers ($ to $$$$) are <strong>indicative guides only</strong> based on publicly available information—not guaranteed prices. Stores without enough public pricing info are marked <strong>Price Not Confirmed</strong>, and unverified details (such as unpublished hours, fitting rooms, or discounts) are marked <strong>&ldquo;Check with the store&rdquo;</strong>.
+              </li>
+              <li>
+                Store images are <strong>illustrative fashion photos</strong> matched to each shop&apos;s clothing style rather than real photos of the storefronts or interiors. Please confirm current hours and details directly with each store before visiting.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
