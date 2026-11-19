@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Store } from '../types';
 import { formatStyleLabel } from '../data/storesData';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 import {
   X,
   MapPin,
@@ -13,8 +14,6 @@ import {
   Tag,
   DollarSign,
   AlertCircle,
-  HelpCircle,
-  Shirt,
 } from 'lucide-react';
 import { trackStoreView } from '../utils/analytics';
 
@@ -36,6 +35,9 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
   onToggleCompare,
 }) => {
   const [activeImage, setActiveImage] = useState<string>('');
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  useModalAccessibility(Boolean(store), dialogRef, onClose);
 
   useEffect(() => {
     if (store) {
@@ -44,29 +46,27 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
     }
   }, [store]);
 
-  // Handle escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
-
   if (!store) return null;
 
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="store-profile-title"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
-      <div className="relative w-full max-w-3xl bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="store-profile-title"
+        tabIndex={-1}
+        className="relative w-full max-w-3xl bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6 focus:outline-none"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 text-[#585047] hover:text-[#213B24] hover:bg-white shadow-sm transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 text-[#585047] hover:text-[#213B24] hover:bg-white shadow-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233]"
           aria-label="Close store profile modal"
         >
           <X className="w-5 h-5" />
@@ -114,7 +114,8 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             <span className="font-medium text-[#213B24]">Photos:</span>
             <button
               onClick={() => setActiveImage(store.imageUrl)}
-              className={`px-2 py-0.5 rounded cursor-pointer ${
+              aria-pressed={activeImage === store.imageUrl}
+              className={`px-2 py-0.5 rounded cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                 activeImage === store.imageUrl ? 'bg-[#2F5233] text-white' : 'hover:bg-[#E8DFD5] text-[#585047]'
               }`}
             >
@@ -122,7 +123,8 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             </button>
             <button
               onClick={() => setActiveImage(store.secondaryImageUrl!)}
-              className={`px-2 py-0.5 rounded cursor-pointer ${
+              aria-pressed={activeImage === store.secondaryImageUrl}
+              className={`px-2 py-0.5 rounded cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                 activeImage === store.secondaryImageUrl ? 'bg-[#2F5233] text-white' : 'hover:bg-[#E8DFD5] text-[#585047]'
               }`}
             >

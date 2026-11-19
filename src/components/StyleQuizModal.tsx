@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { X, Sparkles, ArrowRight, Check } from 'lucide-react';
 import { StyleTag, PriceTier, AdelaideRegion } from '../types';
 import { formatStyleLabel } from '../data/storesData';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface StyleQuizModalProps {
   onClose: () => void;
@@ -20,6 +21,9 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
   const [styleChoice, setStyleChoice] = useState<StyleTag>('Vintage Streetwear & Sportswear');
   const [priceChoice, setPriceChoice] = useState<PriceTier>('$');
   const [regionChoice, setRegionChoice] = useState<AdelaideRegion | 'Any'>('Any');
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  useModalAccessibility(true, dialogRef, onClose);
 
   const handleFinish = () => {
     onApplyMatches({
@@ -33,11 +37,18 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="quiz-modal-title"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
-      <div className="relative w-full max-w-lg bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quiz-modal-title"
+        tabIndex={-1}
+        className="relative w-full max-w-lg bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6 focus:outline-none"
+      >
         {/* Header */}
         <div className="p-5 sm:p-6 bg-[#FAF7F2] border-b border-[#E8DFD5] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -109,8 +120,10 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 ].map((item) => (
                   <button
                     key={item.style}
+                    type="button"
+                    aria-pressed={styleChoice === item.style}
                     onClick={() => setStyleChoice(item.style)}
-                    className={`w-full text-left p-3 rounded-md border transition-all cursor-pointer flex items-start justify-between ${
+                    className={`w-full text-left p-3 rounded-md border transition-all cursor-pointer flex items-start justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                       styleChoice === item.style
                         ? 'border-[#2F5233] bg-[#EBF2EC]'
                         : 'border-[#E8DFD5] bg-[#FAF7F2]/60 hover:bg-[#FAF7F2]'
@@ -175,8 +188,10 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 ].map((item) => (
                   <button
                     key={item.tier}
+                    type="button"
+                    aria-pressed={priceChoice === item.tier}
                     onClick={() => setPriceChoice(item.tier)}
-                    className={`w-full text-left p-3.5 rounded-md border transition-all cursor-pointer flex items-start justify-between ${
+                    className={`w-full text-left p-3.5 rounded-md border transition-all cursor-pointer flex items-start justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                       priceChoice === item.tier
                         ? 'border-[#2F5233] bg-[#EBF2EC]'
                         : 'border-[#E8DFD5] bg-[#FAF7F2]/60 hover:bg-[#FAF7F2]'
@@ -221,8 +236,10 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 ].map((item) => (
                   <button
                     key={item.label}
+                    type="button"
+                    aria-pressed={regionChoice === item.region}
                     onClick={() => setRegionChoice(item.region)}
-                    className={`text-left p-3 rounded-md border transition-all cursor-pointer ${
+                    className={`text-left p-3 rounded-md border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                       regionChoice === item.region
                         ? 'border-[#2F5233] bg-[#EBF2EC]'
                         : 'border-[#E8DFD5] bg-[#FAF7F2]/60 hover:bg-[#FAF7F2]'

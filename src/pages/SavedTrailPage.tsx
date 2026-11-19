@@ -29,9 +29,18 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
   onSelectStore,
   onNavigate,
 }) => {
-  const [copied, setCopied] = React.useState(false);
+  const [copyStatus, setCopyStatus] = React.useState<'idle' | 'copied' | 'failed'>('idle');
+  const copyTimerRef = React.useRef<number | null>(null);
 
-  const handleCopyItinerary = () => {
+  React.useEffect(() => {
+    return () => {
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopyItinerary = async () => {
     const text = savedStores
       .map(
         (s, i) =>
@@ -50,9 +59,42 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
       text +
       `\n\nPlanned with Thrift Trail Adelaide (https://emilyito99-spec.github.io/Thrift-Trail-Adelaideee/)`;
 
-    navigator.clipboard.writeText(fullSummary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    let didCopy = false;
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      try {
+        await navigator.clipboard.writeText(fullSummary);
+        didCopy = true;
+      } catch {
+        didCopy = false;
+      }
+    }
+
+    if (!didCopy) {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = fullSummary;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        didCopy = document.execCommand('copy');
+        document.body.removeChild(textarea);
+      } catch {
+        didCopy = false;
+      }
+    }
+
+    if (copyTimerRef.current !== null) {
+      window.clearTimeout(copyTimerRef.current);
+    }
+
+    setCopyStatus(didCopy ? 'copied' : 'failed');
+    copyTimerRef.current = window.setTimeout(() => {
+      setCopyStatus('idle');
+    }, 3000);
   };
 
   const handlePrint = () => {
@@ -78,30 +120,51 @@ export const SavedTrailPage: React.FC<SavedTrailPageProps> = ({
         </div>
 
         {savedStores.length > 0 && (
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={handleCopyItinerary}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#213B24] bg-white border border-[#E8DFD5] rounded-md hover:bg-[#F4EFEA] transition-colors cursor-pointer"
-            >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#2F5233]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied to Clipboard!' : 'Copy Itinerary'}</span>
-            </button>
+          <div className="flex flex-col items-start sm:items-end gap-1.5">
+            <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={handleCopyItinerary}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#213B24] bg-white border border-[#E8DFD5] rounded-md hover:bg-[#F4EFEA] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233]"
+              >
+                {copyStatus === 'copied' ? (
+                  <Check className="w-3.5 h-3.5 text-[#2F5233]" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5" />
+                )}
+                <span>
+                  {copyStatus === 'copied'
+                    ? 'Copied to Clipboard!'
+                    : copyStatus === 'failed'
+                    ? 'Copy Unavailable'
+                    : 'Copy Itinerary'}
+                </span>
+              </button>
 
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#213B24] bg-white border border-[#E8DFD5] rounded-md hover:bg-[#F4EFEA] transition-colors cursor-pointer"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print Route</span>
-            </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#213B24] bg-white border border-[#E8DFD5] rounded-md hover:bg-[#F4EFEA] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233]"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                <span>Print Route</span>
+              </button>
 
-            <button
-              onClick={onClearAll}
-              className="p-2 text-[#7A7167] hover:text-[#C06443] transition-colors cursor-pointer rounded-md hover:bg-[#F4EFEA]"
-              title="Clear all saved stores"
-            >
-              <Trash2 className="w-4 h-4" />
-            </button>
+              <button
+                type="button"
+                onClick={onClearAll}
+                className="p-2 text-[#7A7167] hover:text-[#C06443] transition-colors cursor-pointer rounded-md hover:bg-[#F4EFEA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233]"
+                aria-label="Clear all saved stores"
+                title="Clear all saved stores"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+            {copyStatus === 'failed' && (
+              <p role="alert" className="text-[11px] text-[#C06443]">
+                Clipboard permission was blocked in this browser—please use Print Route instead.
+              </p>
+            )}
           </div>
         )}
       </div>

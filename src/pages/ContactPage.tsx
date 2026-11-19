@@ -30,12 +30,15 @@ function normalizeFormspreeEndpoint(raw: string): string {
   return value;
 }
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [emailInvalid, setEmailInvalid] = useState(false);
 
   const formEndpoint = normalizeFormspreeEndpoint(
     import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
@@ -44,6 +47,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMessage('');
+    setEmailInvalid(false);
 
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
@@ -52,6 +56,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       setStatus('error');
       setErrorMessage('Please fill in your name, email address, and message before sending.');
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(trimmedEmail)) {
+      setStatus('error');
+      setEmailInvalid(true);
+      setErrorMessage('Please enter a valid email address (for example, name@example.com).');
       return;
     }
 
@@ -277,14 +288,32 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 name="email"
                 type="email"
                 required
+                aria-invalid={emailInvalid}
+                aria-describedby={emailInvalid ? 'contact-email-error' : undefined}
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (status === 'success') setStatus('idle');
+                  const nextVal = e.target.value;
+                  setEmail(nextVal);
+                  if (emailInvalid && EMAIL_REGEX.test(nextVal.trim())) {
+                    setEmailInvalid(false);
+                  }
+                  if (status === 'success' || status === 'error') {
+                    setStatus('idle');
+                    setErrorMessage('');
+                  }
                 }}
                 placeholder="you@example.com"
-                className="w-full px-3.5 py-2.5 text-sm bg-[#FAF7F2] border border-[#E8DFD5] rounded-md text-[#213B24] placeholder:text-[#7A7167] focus:outline-none focus:ring-2 focus:ring-[#2F5233]/30 focus:border-[#2F5233]"
+                className={`w-full px-3.5 py-2.5 text-sm bg-[#FAF7F2] border rounded-md text-[#213B24] placeholder:text-[#7A7167] focus:outline-none focus:ring-2 ${
+                  emailInvalid
+                    ? 'border-[#C06443] focus:ring-[#C06443]/30 focus:border-[#C06443]'
+                    : 'border-[#E8DFD5] focus:ring-[#2F5233]/30 focus:border-[#2F5233]'
+                }`}
               />
+              {emailInvalid && (
+                <p id="contact-email-error" className="text-xs text-[#C06443]">
+                  Please enter a valid email address (for example, name@example.com).
+                </p>
+              )}
             </div>
 
             <div className="space-y-1.5">

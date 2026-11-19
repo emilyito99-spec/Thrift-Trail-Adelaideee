@@ -73,12 +73,12 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
   ];
 
   // Price tier definitions (indicative only — not guaranteed)
-  const priceTiers: { tier: PriceTier; label: string }[] = [
-    { tier: '$', label: '$ Budget-Friendly (Indicative)' },
-    { tier: '$$', label: '$$ Mid-Range (Indicative)' },
-    { tier: '$$$', label: '$$$ Curated Vintage (Indicative)' },
-    { tier: '$$$$', label: '$$$$ Premium / Collector (Indicative)' },
-    { tier: 'Not confirmed', label: 'Not Confirmed Online' },
+  const priceTiers: { tier: PriceTier; label: string; ariaLabel: string }[] = [
+    { tier: '$', label: '$ Budget-Friendly (Indicative)', ariaLabel: 'Budget-friendly op shops ($ indicative)' },
+    { tier: '$$', label: '$$ Mid-Range (Indicative)', ariaLabel: 'Mid-range stores ($$ indicative)' },
+    { tier: '$$$', label: '$$$ Curated Vintage (Indicative)', ariaLabel: 'Curated vintage ($$$ indicative)' },
+    { tier: '$$$$', label: '$$$$ Premium / Collector (Indicative)', ariaLabel: 'Premium or collector vintage ($$$$ indicative)' },
+    { tier: 'Not confirmed', label: 'Not Confirmed Online', ariaLabel: 'Price level not confirmed online' },
   ];
 
   // Adelaide Regions
@@ -216,18 +216,26 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         {/* Row 1: Search Input & Sort Selector */}
         <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-[#7A7167] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <label htmlFor="store-search-input" className="sr-only">
+              Search Adelaide stores by name, suburb, clothing style, or item
+            </label>
+            <Search
+              aria-hidden="true"
+              className="w-4 h-4 text-[#7A7167] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+            />
             <input
+              id="store-search-input"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search store name, suburb (e.g. Norwood, Unley, Prospect), or keyword (e.g. leather, denim, 90s)..."
-              className="w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md text-[#213B24] placeholder:text-[#7A7167] focus:outline-none focus:ring-1 focus:ring-[#2F5233]"
+              className="w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md text-[#213B24] placeholder:text-[#7A7167] focus:outline-none focus:ring-2 focus:ring-[#2F5233]"
             />
             {searchQuery && (
               <button
+                type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7A7167] hover:text-[#213B24]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7A7167] hover:text-[#213B24] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] rounded"
                 aria-label="Clear search text"
               >
                 <X className="w-3.5 h-3.5" />
@@ -236,11 +244,14 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs text-[#7A7167] whitespace-nowrap">Sort by:</span>
+            <label htmlFor="store-sort-select" className="text-xs text-[#7A7167] whitespace-nowrap">
+              Sort by:
+            </label>
             <select
+              id="store-sort-select"
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-2 text-[#213B24] focus:outline-none focus:ring-1 focus:ring-[#2F5233] cursor-pointer"
+              onChange={(e) => setSortBy(e.target.value as 'recommended' | 'price-asc' | 'price-desc' | 'name')}
+              className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-2 text-[#213B24] focus:outline-none focus:ring-2 focus:ring-[#2F5233] cursor-pointer"
             >
               <option value="recommended">Recommended / Curated</option>
               <option value="price-asc">Budget: Lower to Higher ($ to $$$$)</option>
@@ -251,17 +262,19 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         </div>
 
         {/* Row 2: Indicative Price Tier Segmented Control (Functional Buttons) */}
-        <div className="space-y-2">
-          <span className="text-xs font-semibold text-[#213B24] block">
+        <div className="space-y-2" role="group" aria-labelledby="budget-filter-label">
+          <span id="budget-filter-label" className="text-xs font-semibold text-[#213B24] block">
             Indicative Budget Level (Not Guaranteed):
           </span>
           <div className="flex flex-wrap gap-1.5">
             <button
+              type="button"
+              aria-pressed={selectedPrice === 'all'}
               onClick={() => {
                 setSelectedPrice('all');
                 trackStoreFilter('price', 'all');
               }}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                 selectedPrice === 'all'
                   ? 'bg-[#2F5233] text-white shadow-xs'
                   : 'bg-[#FAF7F2] text-[#585047] hover:bg-[#E8DFD5] border border-[#E8DFD5]'
@@ -272,11 +285,14 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
             {priceTiers.map((p) => (
               <button
                 key={p.tier}
+                type="button"
+                aria-label={p.ariaLabel}
+                aria-pressed={selectedPrice === p.tier}
                 onClick={() => {
                   setSelectedPrice(p.tier);
                   trackStoreFilter('price', p.tier);
                 }}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                   selectedPrice === p.tier
                     ? 'bg-[#2F5233] text-white shadow-xs'
                     : 'bg-[#FAF7F2] text-[#585047] hover:bg-[#E8DFD5] border border-[#E8DFD5]'
@@ -289,17 +305,19 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         </div>
 
         {/* Row 3: Clothing Style Categories Filter (Functional Buttons) */}
-        <div className="space-y-2">
-          <span className="text-xs font-semibold text-[#213B24] block">
+        <div className="space-y-2" role="group" aria-labelledby="style-filter-label">
+          <span id="style-filter-label" className="text-xs font-semibold text-[#213B24] block">
             Clothing Style:
           </span>
           <div className="flex flex-wrap gap-1.5">
             <button
+              type="button"
+              aria-pressed={selectedStyle === 'all'}
               onClick={() => {
                 setSelectedStyle('all');
                 trackStoreFilter('style', 'all');
               }}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                 selectedStyle === 'all'
                   ? 'bg-[#2F5233] text-white shadow-xs'
                   : 'bg-[#FAF7F2] text-[#585047] hover:bg-[#E8DFD5] border border-[#E8DFD5]'
@@ -310,11 +328,13 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
             {styleOptions.map((st) => (
               <button
                 key={st}
+                type="button"
+                aria-pressed={selectedStyle === st}
                 onClick={() => {
                   setSelectedStyle(st);
                   trackStoreFilter('style', st);
                 }}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5233] ${
                   selectedStyle === st
                     ? 'bg-[#2F5233] text-white shadow-xs'
                     : 'bg-[#FAF7F2] text-[#585047] hover:bg-[#E8DFD5] border border-[#E8DFD5]'
@@ -331,14 +351,18 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
           <div className="flex flex-wrap items-center gap-3">
             {/* Region dropdown */}
             <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#2F5233]" />
+              <MapPin aria-hidden="true" className="w-3.5 h-3.5 text-[#2F5233]" />
+              <label htmlFor="region-filter-select" className="sr-only">
+                Filter by Adelaide precinct
+              </label>
               <select
+                id="region-filter-select"
                 value={selectedRegion}
                 onChange={(e) => {
                   setSelectedRegion(e.target.value);
                   trackStoreFilter('region', e.target.value);
                 }}
-                className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-1.5 text-[#213B24] focus:outline-none cursor-pointer"
+                className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-1.5 text-[#213B24] focus:outline-none focus:ring-2 focus:ring-[#2F5233] cursor-pointer"
               >
                 <option value="all">All Adelaide Precincts</option>
                 {regionOptions.map((r) => (
@@ -351,13 +375,17 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
 
             {/* Store Type dropdown */}
             <div className="flex items-center gap-1.5">
+              <label htmlFor="store-type-filter-select" className="sr-only">
+                Filter by store type
+              </label>
               <select
+                id="store-type-filter-select"
                 value={selectedStoreType}
                 onChange={(e) => {
                   setSelectedStoreType(e.target.value);
                   trackStoreFilter('storeType', e.target.value);
                 }}
-                className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-1.5 text-[#213B24] focus:outline-none cursor-pointer"
+                className="text-xs bg-[#FAF7F2] border border-[#E8DFD5] rounded-md px-3 py-1.5 text-[#213B24] focus:outline-none focus:ring-2 focus:ring-[#2F5233] cursor-pointer"
               >
                 <option value="all">All Store Types (Op Shop & Vintage)</option>
                 {storeTypes.map((t) => (

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Store } from '../types';
 import { formatStyleLabel } from '../data/storesData';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 import { X, Layers, ArrowRight, Trash2 } from 'lucide-react';
 import { trackCompareStores } from '../utils/analytics';
 
@@ -19,6 +20,10 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
   onSelectStore,
   onClearAll,
 }) => {
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  useModalAccessibility(stores.length > 0, dialogRef, onClose);
+
   React.useEffect(() => {
     if (stores.length > 0) {
       trackCompareStores(stores.map((s) => s.name));
@@ -50,11 +55,18 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="compare-modal-title"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
-      <div className="relative w-full max-w-5xl bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="compare-modal-title"
+        tabIndex={-1}
+        className="relative w-full max-w-5xl bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6 focus:outline-none"
+      >
         {/* Header */}
         <div className="p-5 sm:p-6 bg-[#FAF7F2] border-b border-[#E8DFD5] flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
