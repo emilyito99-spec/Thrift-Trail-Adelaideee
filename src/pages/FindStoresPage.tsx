@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Store, PriceTier, StoreType, StyleTag, AdelaideRegion } from '../types';
-import { STORES_DATA } from '../data/storesData';
+import { STORES_DATA, formatStyleLabel } from '../data/storesData';
 import { StoreCard } from '../components/StoreCard';
 import {
   Search,
@@ -27,6 +27,7 @@ interface FindStoresPageProps {
   initialRegion?: string;
   initialStyle?: StyleTag;
   initialPrice?: PriceTier;
+  filterVersion?: number;
 }
 
 export const FindStoresPage: React.FC<FindStoresPageProps> = ({
@@ -39,6 +40,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
   initialRegion,
   initialStyle,
   initialPrice,
+  filterVersion,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStyle, setSelectedStyle] = useState<string>(initialStyle || 'all');
@@ -47,6 +49,17 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
   const [selectedStoreType, setSelectedStoreType] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'recommended' | 'price-asc' | 'price-desc' | 'name'>('recommended');
   const [onlyTradeIn, setOnlyTradeIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (filterVersion !== undefined && filterVersion > 0) {
+      setSearchQuery('');
+      setSelectedStyle(initialStyle || 'all');
+      setSelectedPrice(initialPrice || 'all');
+      setSelectedRegion(initialRegion || 'all');
+      setSelectedStoreType('all');
+      setOnlyTradeIn(false);
+    }
+  }, [filterVersion, initialRegion, initialStyle, initialPrice]);
 
   // Available style options
   const styleOptions: StyleTag[] = [
@@ -92,7 +105,11 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         const matchesName = store.name.toLowerCase().includes(query);
         const matchesAddress = store.address.toLowerCase().includes(query);
         const matchesRegion = store.region.toLowerCase().includes(query);
-        const matchesStyle = store.styles.some((s) => s.toLowerCase().includes(query));
+        const matchesStyle = store.styles.some(
+          (s) =>
+            s.toLowerCase().includes(query) ||
+            formatStyleLabel(s).toLowerCase().includes(query)
+        );
         const matchesFinds = store.typicalFinds.some((f) => f.toLowerCase().includes(query));
         if (!matchesName && !matchesAddress && !matchesRegion && !matchesStyle && !matchesFinds) {
           return false;
@@ -186,17 +203,12 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         </p>
       </div>
 
-      {/* Store Information & Illustrative Photo Notice */}
-      <div className="p-4 bg-[#FAF7F2] border border-[#E8DFD5] rounded-lg flex items-start gap-3 text-xs text-[#585047]">
+      {/* Concise Store Info Notice */}
+      <div className="px-4 py-3 bg-[#FAF7F2] border border-[#E8DFD5] rounded-lg flex items-start gap-2.5 text-xs text-[#585047]">
         <AlertCircle className="w-4 h-4 text-[#2F5233] shrink-0 mt-0.5" />
-        <div>
-          <p className="font-semibold text-[#213B24]">
-            Store Information &amp; Illustrative Photo Notice
-          </p>
-          <p className="mt-0.5 leading-relaxed">
-            Store names, addresses, and links have been checked against official store or precinct sources. Budget levels ($–$$$$) are indicative estimates based on store type or publicly listed items where available—not guaranteed prices. Details without confirmed online information say &ldquo;Not confirmed&rdquo; or &ldquo;Check with the store&rdquo;, and all photos are illustrative clothing-style images rather than real photos of the stores.
-          </p>
-        </div>
+        <p className="leading-relaxed">
+          <strong className="text-[#213B24]">Quick note:</strong> Budget levels ($–$$$$) are indicative guides only, photos are illustrative style images rather than real store photos, and unconfirmed details are marked &ldquo;Not confirmed&rdquo; or &ldquo;Check with the store&rdquo;. Always confirm current hours and prices directly before visiting.
+        </p>
       </div>
 
       {/* Search & Main Filter Controls */}
@@ -279,7 +291,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
         {/* Row 3: Clothing Style Categories Filter (Functional Buttons) */}
         <div className="space-y-2">
           <span className="text-xs font-semibold text-[#213B24] block">
-            Clothing Style & Aesthetic:
+            Clothing Style:
           </span>
           <div className="flex flex-wrap gap-1.5">
             <button
@@ -308,7 +320,7 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
                     : 'bg-[#FAF7F2] text-[#585047] hover:bg-[#E8DFD5] border border-[#E8DFD5]'
                 }`}
               >
-                {st}
+                {formatStyleLabel(st)}
               </button>
             ))}
           </div>
@@ -434,9 +446,9 @@ export const FindStoresPage: React.FC<FindStoresPageProps> = ({
       )}
 
       {/* Store Info Reminder */}
-      <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] text-xs text-[#7A7167] flex items-center justify-between gap-4">
+      <div className="p-4 bg-[#FAF7F2] rounded-lg border border-[#E8DFD5] text-xs text-[#7A7167]">
         <p>
-          <strong>Verification Reminder:</strong> Pricing tiers are indicative guides only, unverified details are labelled &ldquo;Not confirmed&rdquo; or &ldquo;Check with the store&rdquo;, and card photos are illustrative clothing-style images. Always confirm current hours and prices directly with each store.
+          Budget levels are indicative guides and photos are illustrative—please confirm current hours and prices directly with each store.
         </p>
       </div>
 

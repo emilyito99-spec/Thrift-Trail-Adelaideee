@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, Sparkles, ArrowRight, Check, RefreshCw } from 'lucide-react';
+import { X, Sparkles, ArrowRight, Check } from 'lucide-react';
 import { StyleTag, PriceTier, AdelaideRegion } from '../types';
+import { formatStyleLabel } from '../data/storesData';
 
 interface StyleQuizModalProps {
   onClose: () => void;
@@ -48,7 +49,7 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 Adelaide Thrift Style Matcher
               </h2>
               <p className="text-xs text-[#585047]">
-                Step {step} of 3 · Find stores matched to your aesthetic & budget
+                Step {step} of 3 · Find stores matched to your style &amp; budget
               </p>
             </div>
           </div>
@@ -69,39 +70,47 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 Question 1
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-                What is your primary wardrobe aesthetic?
+                What clothing style are you looking for?
               </h3>
               <p className="text-xs text-[#585047]">
-                Choose the vintage vibe you reach for most during uni, work, and weekends.
+                Pick the style you wear most often so we can match you with relevant Adelaide stores.
               </p>
 
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-1 max-h-[50vh] overflow-y-auto pr-1">
                 {[
                   {
                     style: 'Vintage Streetwear & Sportswear' as StyleTag,
-                    desc: 'Oversized fleece, Carhartt, retro sportswear, vintage sneakers & caps',
+                    desc: 'Graphic tees, oversized fleece, retro sportswear & streetwear',
                   },
                   {
                     style: '90s & Y2K Nostalgia' as StyleTag,
-                    desc: 'Low-rise denim, baby tees, mini skirts, leather jackets, grunge aesthetics',
+                    desc: '90s/2000s denim, baby tees, casual streetwear & retro cuts',
+                  },
+                  {
+                    style: 'Workwear & Gorpcore' as StyleTag,
+                    desc: 'Heavyweight denim, canvas jackets, boots & everyday utility wear',
                   },
                   {
                     style: 'Minimalist & Capsule Essentials' as StyleTag,
-                    desc: 'Timeless linen, crisp cotton button-downs, quality wool coats, neutral tones',
+                    desc: 'Timeless coats, tailored basics, linen & crisp button-downs',
                   },
                   {
                     style: '60s & 70s Retro & Boho' as StyleTag,
-                    desc: 'Psychedelic collars, corduroy flares, mod dresses, and retro sunglasses',
+                    desc: '1920s–1980s vintage dresses, retro shirts, flares & accessories',
                   },
                   {
                     style: 'Eclectic Op Shop Mix' as StyleTag,
-                    desc: 'Unfiltered thrift hunting, unique quirky pieces, authentic charity rack finds',
+                    desc: 'Everyday bargain racks, varied donations & unexpected finds',
+                  },
+                  {
+                    style: 'Designer & Archive Pieces' as StyleTag,
+                    desc: 'Labelled designer donations, rare vintage & collector garments',
                   },
                 ].map((item) => (
                   <button
                     key={item.style}
                     onClick={() => setStyleChoice(item.style)}
-                    className={`w-full text-left p-3.5 rounded-md border transition-all cursor-pointer flex items-start justify-between ${
+                    className={`w-full text-left p-3 rounded-md border transition-all cursor-pointer flex items-start justify-between ${
                       styleChoice === item.style
                         ? 'border-[#2F5233] bg-[#EBF2EC]'
                         : 'border-[#E8DFD5] bg-[#FAF7F2]/60 hover:bg-[#FAF7F2]'
@@ -109,7 +118,7 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                   >
                     <div>
                       <span className="text-xs font-semibold text-[#213B24] block">
-                        {item.style}
+                        {formatStyleLabel(item.style)}
                       </span>
                       <span className="text-[11px] text-[#585047] leading-relaxed">
                         {item.desc}
@@ -130,38 +139,38 @@ export const StyleQuizModal: React.FC<StyleQuizModalProps> = ({
                 Question 2
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#213B24]">
-                What is your target budget per garment?
+                What kind of price level are you looking for?
               </h3>
               <p className="text-xs text-[#585047]">
-                Choose an indicative budget category (not guaranteed pricing) to filter matching stores.
+                Choose a general store category from everyday charity op shops to specialty vintage (exact item prices vary in-store).
               </p>
 
               <div className="space-y-2.5 pt-2">
                 {[
                   {
                     tier: '$' as PriceTier,
-                    title: '$ Budget-Friendly (Indicative)',
-                    desc: 'Charity op shops and large thrift stores geared toward everyday budget-friendly finds.',
+                    title: '$ — Budget-Friendly Op Shops',
+                    desc: 'Everyday charity op shops and large-format thrift stores.',
                   },
                   {
                     tier: '$$' as PriceTier,
-                    title: '$$ Mid-Range / Curated Op Shop (Indicative)',
-                    desc: 'Curated vintage boutiques and designer-focused charity op shops.',
+                    title: '$$ — Mid-Range Vintage & Designer Op Shops',
+                    desc: 'Approachable curated vintage shops and designer-focused charity op shops.',
                   },
                   {
                     tier: '$$$' as PriceTier,
-                    title: '$$$ Curated Vintage & Streetwear (Indicative)',
-                    desc: 'Specialist vintage streetwear, workwear, heritage brands, and curated retro drops.',
+                    title: '$$$ — Curated Vintage & Streetwear',
+                    desc: 'Specialist vintage streetwear, heritage workwear, and curated retro stores.',
                   },
                   {
                     tier: '$$$$' as PriceTier,
-                    title: '$$$$ Premium / Collector Vintage (Indicative)',
-                    desc: 'Rare collector vintage pieces and specialty boutique finds.',
+                    title: '$$$$ — Premium & Collector Vintage',
+                    desc: 'Rare vintage clothing and specialty collector pieces.',
                   },
                   {
                     tier: 'Not confirmed' as PriceTier,
-                    title: 'Price Not Confirmed Online',
-                    desc: 'Independent boutiques and multi-vendor collectives without fixed online pricing.',
+                    title: 'Stores Without Listed Pricing',
+                    desc: 'Independent boutiques and multi-vendor collectives where prices vary by stall or piece.',
                   },
                 ].map((item) => (
                   <button

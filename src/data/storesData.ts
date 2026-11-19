@@ -1,4 +1,4 @@
-import { Store } from '../types';
+import { Store, StyleTag } from '../types';
 import vintageRacksImg from '../assets/images/store_vintage_racks_1793692055147.jpg';
 import opShopTreasuresImg from '../assets/images/store_op_shop_treasures_1793692072902.jpg';
 import heroThriftImg from '../assets/images/hero_thrift_fashion_1793692054727.jpg';
@@ -17,6 +17,20 @@ import styleHeritageWorkwearImg from '../assets/images/style_heritage_workwear_1
 import styleDesignerArchiveImg from '../assets/images/style_designer_archive_1794894953302.jpg';
 
 export { vintageRacksImg, opShopTreasuresImg, heroThriftImg, guideStyleImg };
+
+export const STYLE_LABELS: Record<StyleTag, string> = {
+  'Vintage Streetwear & Sportswear': 'Streetwear & Sport',
+  '90s & Y2K Nostalgia': '90s & Y2K',
+  'Workwear & Gorpcore': 'Workwear & Denim',
+  '60s & 70s Retro & Boho': '60s & 70s Retro',
+  'Minimalist & Capsule Essentials': 'Minimalist & Basics',
+  'Eclectic Op Shop Mix': 'Op Shop Mix',
+  'Designer & Archive Pieces': 'Designer & Collector',
+};
+
+export function formatStyleLabel(style: StyleTag): string {
+  return STYLE_LABELS[style] || style;
+}
 
 export const STORES_DATA: Store[] = [
   {

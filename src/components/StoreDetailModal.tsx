@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Store } from '../types';
+import { formatStyleLabel } from '../data/storesData';
 import {
   X,
   MapPin,
@@ -176,7 +177,7 @@ export const StoreDetailModal: React.FC<StoreDetailModalProps> = ({
             </h3>
             <div className="text-xs text-[#585047] leading-relaxed">
               <span className="font-semibold text-[#213B24]">Primary Styles: </span>
-              {store.styles.join(' · ')}
+              {store.styles.map(formatStyleLabel).join(' · ')}
             </div>
 
             <div className="bg-[#FAF7F2] p-4 rounded-md border border-[#E8DFD5]">

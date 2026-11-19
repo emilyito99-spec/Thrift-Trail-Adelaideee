@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Store } from '../types';
+import { formatStyleLabel } from '../data/storesData';
 import { MapPin, Train, Bookmark, Check, ArrowRight, Layers } from 'lucide-react';
 
 interface StoreCardProps {
@@ -121,7 +122,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({
           {/* Style Highlights (Clean inline text) */}
           <div className="text-[11px] text-[#7A7167] border-t border-[#F4EFEA] pt-2.5">
             <span className="font-medium text-[#213B24]">Styles: </span>
-            {store.styles.slice(0, 2).join(' · ')}
+            {store.styles.slice(0, 2).map(formatStyleLabel).join(' · ')}
             {store.styles.length > 2 && ' · more'}
           </div>
         </div>

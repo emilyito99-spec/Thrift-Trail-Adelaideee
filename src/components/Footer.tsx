@@ -1,12 +1,13 @@
 import React from 'react';
-import { PageRoute } from '../types';
+import { PageRoute, PriceTier, AdelaideRegion } from '../types';
 import { Compass, Leaf, MapPin, Sparkles, AlertCircle } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: PageRoute) => void;
+  onFilterStores: (filters: { region?: AdelaideRegion; price?: PriceTier }) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onFilterStores }) => {
   return (
     <footer className="bg-[#F4EFEA] border-t border-[#E8DFD5] text-[#585047] mt-24">
       {/* Top Banner / Sustainability Statement */}
@@ -110,7 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Col 3: Key SEO Topics & Areas */}
+          {/* Col 3: Featured Adelaide Trails (Pre-filtered) */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-[#213B24] uppercase tracking-wider">
               Featured Adelaide Trails
@@ -118,23 +119,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs">
               <li>
                 <button
-                  onClick={() => onNavigate('find-stores')}
+                  onClick={() => onFilterStores({ region: 'Adelaide CBD / East End' })}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  CBD, Rundle St &amp; Ebenezer Place
+                  CBD, Rundle St &amp; East End
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('find-stores')}
+                  onClick={() => onFilterStores({ region: 'Norwood / Inner East' })}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  The Parade Norwood Op Shops &amp; Vintage
+                  The Parade Norwood Stores
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('find-stores')}
+                  onClick={() => onFilterStores({ region: 'Unley, Fullarton & Inner South' })}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
                   Unley, Fullarton &amp; Clarence Park
@@ -142,35 +143,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('find-stores')}
+                  onClick={() => onFilterStores({ region: 'Prospect / Inner North' })}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Prospect Churchill Rd Thrift Superstore
+                  Prospect Churchill Rd Superstore
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('find-stores')}
+                  onClick={() => onFilterStores({ price: '$' })}
                   className="hover:text-[#213B24] transition-colors text-left cursor-pointer"
                 >
-                  Budget-Friendly Op Shops ($ Indicative)
+                  Budget-Friendly Op Shops ($)
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Project Transparency */}
+          {/* Col 4: Good to Know */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-[#213B24] uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-[#C06443]" />
-              <span>Project Transparency</span>
+              <span>Good to Know</span>
             </h4>
             <p className="text-xs leading-relaxed text-[#585047]">
-              This is a digital marketing discovery and comparison tool, not an e-commerce platform. Links point to official store websites, charity pages, or official social profiles.
+              Thrift Trail Adelaide is a local store discovery and comparison guide, not an online shopping site. Links take you directly to official store websites, charity pages, or social profiles.
             </p>
-            <div className="text-[11px] text-[#7A7167] bg-[#FAF7F2] p-2.5 rounded border border-[#E8DFD5]">
-              Google Analytics 4 (GA4) measurement ready for academic performance review.
-            </div>
           </div>
         </div>
 

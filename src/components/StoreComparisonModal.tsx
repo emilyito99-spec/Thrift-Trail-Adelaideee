@@ -1,6 +1,7 @@
 import React from 'react';
 import { Store } from '../types';
-import { X, Layers, Check, Minus, ArrowRight, Trash2 } from 'lucide-react';
+import { formatStyleLabel } from '../data/storesData';
+import { X, Layers, ArrowRight, Trash2 } from 'lucide-react';
 import { trackCompareStores } from '../utils/analytics';
 
 interface StoreComparisonModalProps {
@@ -26,6 +27,26 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
 
   if (stores.length === 0) return null;
 
+  const hasConfirmedFittingRooms = stores.some(
+    (s) => s.fittingRooms && s.fittingRooms !== 'Check with the store'
+  );
+  const hasConfirmedDiscounts = stores.some(
+    (s) => s.studentDiscount && s.studentDiscount !== 'Check with the store'
+  );
+
+  const formatTradeInLabel = (store: Store) => {
+    if (store.acceptsTradeIn) return 'Buy, sell & trade in-store';
+    if (store.clothingTradeIn.toLowerCase().includes('donation')) return 'Donations accepted';
+    return 'Not listed online';
+  };
+
+  const formatHoursSummary = (store: Store) => {
+    if (store.openingHours.weekdays === 'Check with the store') {
+      return 'Check with store';
+    }
+    return store.openingHours.weekdays;
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6"
@@ -35,7 +56,7 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
     >
       <div className="relative w-full max-w-5xl bg-white rounded-lg shadow-xl border border-[#E8DFD5] overflow-hidden my-6">
         {/* Header */}
-        <div className="p-5 sm:p-6 bg-[#FAF7F2] border-b border-[#E8DFD5] flex items-center justify-between">
+        <div className="p-5 sm:p-6 bg-[#FAF7F2] border-b border-[#E8DFD5] flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-[#2F5233] text-white flex items-center justify-center shrink-0">
               <Layers className="w-4 h-4" />
@@ -45,12 +66,12 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
                 Side-by-Side Store Comparison
               </h2>
               <p className="text-xs text-[#585047]">
-                Compare indicative budget tiers, aesthetics, and Adelaide Metro transit access before heading out.
+                Compare store type, indicative budget level, clothing styles, and transit access at a glance.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={onClearAll}
               className="text-xs text-[#7A7167] hover:text-[#C06443] transition-colors flex items-center gap-1 cursor-pointer"
@@ -69,25 +90,28 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
         </div>
 
         {/* Comparison Table / Grid */}
-        <div className="p-6 overflow-x-auto">
+        <div className="p-5 sm:p-6 overflow-x-auto max-h-[70vh] overflow-y-auto">
           <div className="min-w-[640px]">
             {/* Store Headers */}
             <div className="grid grid-cols-4 gap-4 pb-4 border-b border-[#E8DFD5]">
               <div className="text-xs font-bold text-[#7A7167] uppercase tracking-wider self-end pb-2">
-                Attribute
+                Store Overview
               </div>
               {stores.map((store) => (
                 <div key={store.id} className="space-y-2">
                   <div className="relative aspect-16/10 rounded overflow-hidden bg-[#F4EFEA]">
                     <img
                       src={store.imageUrl}
-                      alt={store.name}
+                      alt={`Illustrative style photo for ${store.name}`}
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
+                    <span className="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-[#FAF7F2]/90 text-[10px] font-medium text-[#585047]">
+                      Illustrative
+                    </span>
                     <button
                       onClick={() => onRemoveStore(store.id)}
-                      className="absolute top-1.5 right-1.5 p-1 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
+                      className="absolute top-1.5 right-1.5 p-1 rounded-full bg-black/60 text-white hover:bg-black transition-colors cursor-pointer"
                       aria-label={`Remove ${store.name} from comparison`}
                     >
                       <X className="w-3 h-3" />
@@ -119,34 +143,40 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
               ))}
             </div>
 
-            {/* Row: Store Category & Region */}
+            {/* Row: Store Type & Address */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Type & Region</span>
+              <span className="font-semibold text-[#213B24]">Type &amp; Area</span>
               {stores.map((store) => (
-                <div key={store.id} className="text-[#585047]">
+                <div key={store.id} className="text-[#585047] space-y-0.5">
                   <span className="font-medium text-[#213B24] block">{store.storeType}</span>
-                  <span className="text-[#7A7167] text-[11px]">{store.region}</span>
+                  <span className="text-[#7A7167] text-[11px] block">{store.region}</span>
                 </div>
               ))}
             </div>
 
             {/* Row: Indicative Price Tier */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Indicative Price</span>
+              <span className="font-semibold text-[#213B24]">Budget Level</span>
               {stores.map((store) => (
-                <div key={store.id} className="text-[#585047]">
-                  <span className="font-bold text-[#2F5233] text-sm block">{store.priceTier}</span>
-                  <span className="text-[11px] text-[#585047]">{store.indicativePriceRange}</span>
+                <div key={store.id} className="text-[#585047] space-y-0.5">
+                  <span className="font-bold text-[#2F5233] text-sm block">
+                    {store.priceTier === 'Not confirmed'
+                      ? 'Not Confirmed'
+                      : `${store.priceTier} (Indicative)`}
+                  </span>
+                  <span className="text-[11px] text-[#585047] line-clamp-2 leading-relaxed">
+                    {store.indicativePriceRange}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* Row: Primary Aesthetics */}
+            {/* Row: Simplified Styles */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Style Aesthetics</span>
+              <span className="font-semibold text-[#213B24]">Clothing Styles</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047] text-[11px] leading-relaxed">
-                  {store.styles.join(' · ')}
+                  {store.styles.map(formatStyleLabel).join(' · ')}
                 </div>
               ))}
             </div>
@@ -163,9 +193,19 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
               ))}
             </div>
 
+            {/* Row: Opening Hours */}
+            <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
+              <span className="font-semibold text-[#213B24]">Hours</span>
+              {stores.map((store) => (
+                <div key={store.id} className="text-[#585047] text-[11px] leading-relaxed">
+                  {formatHoursSummary(store)}
+                </div>
+              ))}
+            </div>
+
             {/* Row: Public Transit */}
             <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Public Transit Access</span>
+              <span className="font-semibold text-[#213B24]">Public Transit</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047] text-[11px] leading-relaxed">
                   {store.publicTransit}
@@ -173,44 +213,51 @@ export const StoreComparisonModal: React.FC<StoreComparisonModalProps> = ({
               ))}
             </div>
 
-            {/* Row: Fitting Rooms & Trade-In */}
-            <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Fitting Rooms</span>
-              {stores.map((store) => (
-                <div key={store.id} className="text-[#585047] text-[11px]">
-                  {store.fittingRooms}
-                </div>
-              ))}
-            </div>
-
-            {/* Row: Trade-in / Donations */}
-            <div className="grid grid-cols-4 gap-4 py-3 border-b border-[#F4EFEA] text-xs">
-              <span className="font-semibold text-[#213B24]">Buy / Sell / Donations</span>
-              {stores.map((store) => (
-                <div key={store.id} className="text-[#585047] text-[11px]">
-                  {store.clothingTradeIn}
-                </div>
-              ))}
-            </div>
-
-            {/* Row: Student Discounts */}
+            {/* Row: Buy / Sell / Donations */}
             <div className="grid grid-cols-4 gap-4 py-3 text-xs">
-              <span className="font-semibold text-[#213B24]">Student Discounts</span>
+              <span className="font-semibold text-[#213B24]">Trade / Donations</span>
               {stores.map((store) => (
                 <div key={store.id} className="text-[#585047] text-[11px]">
-                  {store.studentDiscount || 'Check with the store'}
+                  <span className={store.acceptsTradeIn ? 'font-semibold text-[#2F5233]' : ''}>
+                    {formatTradeInLabel(store)}
+                  </span>
                 </div>
               ))}
             </div>
+
+            {/* Only display Fitting Rooms / Student Discounts rows when confirmed for at least one store */}
+            {hasConfirmedFittingRooms && (
+              <div className="grid grid-cols-4 gap-4 py-3 border-t border-[#F4EFEA] text-xs">
+                <span className="font-semibold text-[#213B24]">Fitting Rooms</span>
+                {stores.map((store) => (
+                  <div key={store.id} className="text-[#585047] text-[11px]">
+                    {store.fittingRooms}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {hasConfirmedDiscounts && (
+              <div className="grid grid-cols-4 gap-4 py-3 border-t border-[#F4EFEA] text-xs">
+                <span className="font-semibold text-[#213B24]">Student Discounts</span>
+                {stores.map((store) => (
+                  <div key={store.id} className="text-[#585047] text-[11px]">
+                    {store.studentDiscount || 'Not listed online'}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Footer */}
         <div className="p-4 bg-[#FAF7F2] border-t border-[#E8DFD5] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[#7A7167]">
-          <span>Indicative comparison guide; photos are illustrative. Confirm prices and hours directly with each store.</span>
+          <span>
+            Budget tiers are indicative and photos are illustrative. Fitting rooms, student discounts, and current hours should be confirmed directly with each store.
+          </span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 bg-[#2F5233] text-white rounded font-medium hover:bg-[#213B24] transition-colors cursor-pointer"
+            className="px-4 py-1.5 bg-[#2F5233] text-white rounded font-medium hover:bg-[#213B24] transition-colors cursor-pointer shrink-0 self-end sm:self-auto"
           >
             Close Comparison
           </button>

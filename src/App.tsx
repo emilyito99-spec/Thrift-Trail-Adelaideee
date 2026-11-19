@@ -27,10 +27,11 @@ export default function App() {
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
 
-  // Filters passed from Quiz or Neighborhood clicks
+  // Filters passed from Quiz, Footer trails, or Neighborhood clicks
   const [filterRegion, setFilterRegion] = useState<string>('all');
   const [filterStyle, setFilterStyle] = useState<StyleTag | undefined>(undefined);
   const [filterPrice, setFilterPrice] = useState<PriceTier | undefined>(undefined);
+  const [filterVersion, setFilterVersion] = useState<number>(0);
 
   // Saved Stores (persisted to localStorage)
   const [savedStores, setSavedStores] = useState<Store[]>(() => {
@@ -143,13 +144,16 @@ export default function App() {
   }, [currentPage, selectedGuideId]);
 
   const handleNavigate = (page: PageRoute) => {
-    setCurrentPage(page);
-    if (page !== 'guides') {
-      setSelectedGuideId(null);
-    } else {
-      setSelectedGuideId(null);
+    if (page === 'find-stores') {
+      setFilterRegion('all');
+      setFilterStyle(undefined);
+      setFilterPrice(undefined);
+      setFilterVersion((v) => v + 1);
     }
+    setCurrentPage(page);
+    setSelectedGuideId(null);
     window.location.hash = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectGuide = (guideId: string | null) => {
@@ -190,7 +194,26 @@ export default function App() {
     setFilterStyle(filters.selectedStyle);
     setFilterPrice(filters.selectedPrice);
     setFilterRegion(filters.selectedRegion || 'all');
-    handleNavigate('find-stores');
+    setFilterVersion((v) => v + 1);
+    setCurrentPage('find-stores');
+    setSelectedGuideId(null);
+    window.location.hash = 'find-stores';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleQuickFilter = (filters: {
+    region?: string;
+    style?: StyleTag;
+    price?: PriceTier;
+  }) => {
+    setFilterRegion(filters.region || 'all');
+    setFilterStyle(filters.style);
+    setFilterPrice(filters.price);
+    setFilterVersion((v) => v + 1);
+    setCurrentPage('find-stores');
+    setSelectedGuideId(null);
+    window.location.hash = 'find-stores';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -213,10 +236,7 @@ export default function App() {
             onToggleCompare={handleToggleCompare}
             savedStores={savedStores}
             onToggleSave={handleToggleSave}
-            onFilterByRegion={(region) => {
-              setFilterRegion(region);
-              handleNavigate('find-stores');
-            }}
+            onFilterByRegion={(region) => handleQuickFilter({ region })}
           />
         )}
 
@@ -231,6 +251,7 @@ export default function App() {
             initialRegion={filterRegion}
             initialStyle={filterStyle}
             initialPrice={filterPrice}
+            filterVersion={filterVersion}
           />
         )}
 
@@ -287,7 +308,7 @@ export default function App() {
       )}
 
       {/* Global Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} onFilterStores={handleQuickFilter} />
     </div>
   );
 }
