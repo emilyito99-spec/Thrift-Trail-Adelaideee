@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PageRoute, Store, StyleTag, PriceTier, AdelaideRegion } from './types';
 import { STORES_DATA } from './data/storesData';
 import { GUIDES_DATA } from './data/guidesData';
@@ -19,10 +19,46 @@ const LOCAL_STORAGE_KEY = 'thrift_trail_adelaide_saved';
 const DEFAULT_META_DESCRIPTION =
   'Find and compare second hand clothing Adelaide and vintage clothing stores before visiting. Curated styles, price guides, and sustainable fashion maps for young adults.';
 
+function parseHashRoute(hash: string): {
+  page: PageRoute;
+  guideId: string | null;
+  store: Store | null;
+} {
+  const rawHash = hash.replace(/^#\/?/, '');
+  const parts = rawHash.split('/');
+  const mainRoute = parts[0];
+
+  if (mainRoute === 'find-stores') {
+    return { page: 'find-stores', guideId: null, store: null };
+  }
+  if (mainRoute === 'guides') {
+    return { page: 'guides', guideId: parts[1] || null, store: null };
+  }
+  if (mainRoute === 'about') {
+    return { page: 'about', guideId: null, store: null };
+  }
+  if (mainRoute === 'my-trail') {
+    return { page: 'my-trail', guideId: null, store: null };
+  }
+  if (mainRoute === 'contact') {
+    return { page: 'contact', guideId: null, store: null };
+  }
+  if (mainRoute === 'store' && parts[1]) {
+    const found = STORES_DATA.find((s) => s.id === parts[1]) || null;
+    return { page: 'home', guideId: null, store: found };
+  }
+  return { page: 'home', guideId: null, store: null };
+}
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageRoute>('home');
-  const [selectedGuideId, setSelectedGuideId] = useState<string | null>(null);
-  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
+  const initialRoute = typeof window !== 'undefined'
+    ? parseHashRoute(window.location.hash)
+    : { page: 'home' as PageRoute, guideId: null, store: null };
+
+  const [currentPage, setCurrentPage] = useState<PageRoute>(initialRoute.page);
+  const [selectedGuideId, setSelectedGuideId] = useState<string | null>(initialRoute.guideId);
+  const [selectedStore, setSelectedStore] = useState<Store | null>(initialRoute.store);
+  const isInitialMountRef = useRef(true);
   const [comparedStores, setComparedStores] = useState<Store[]>([]);
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
@@ -64,43 +100,20 @@ export default function App() {
   // Sync hash routing for GitHub Pages subfolder compatibility & browser back/forward
   useEffect(() => {
     const handleHashChange = () => {
-      const rawHash = window.location.hash.replace(/^#\/?/, '');
-      const parts = rawHash.split('/');
-      const mainRoute = parts[0];
-
-      if (mainRoute === 'find-stores') {
-        setCurrentPage('find-stores');
-        setSelectedGuideId(null);
-      } else if (mainRoute === 'guides') {
-        setCurrentPage('guides');
-        setSelectedGuideId(parts[1] || null);
-      } else if (mainRoute === 'about') {
-        setCurrentPage('about');
-        setSelectedGuideId(null);
-      } else if (mainRoute === 'my-trail') {
-        setCurrentPage('my-trail');
-        setSelectedGuideId(null);
-      } else if (mainRoute === 'contact') {
-        setCurrentPage('contact');
-        setSelectedGuideId(null);
-      } else if (mainRoute === 'store' && parts[1]) {
-        const found = STORES_DATA.find((s) => s.id === parts[1]);
-        if (found) {
-          setSelectedStore(found);
-        }
+      const parsed = parseHashRoute(window.location.hash);
+      if (parsed.store) {
+        setSelectedStore(parsed.store);
       } else {
-        setCurrentPage('home');
-        setSelectedGuideId(null);
+        setCurrentPage(parsed.page);
+        setSelectedGuideId(parsed.guideId);
       }
     };
 
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // on mount
-
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Update document title, meta description, and GA4 page view on route change
+  // Update document title, meta description, and GA4 page view on SPA route changes
   useEffect(() => {
     let title = 'Thrift Trail Adelaide | Second Hand & Vintage Clothing Adelaide';
     let description = DEFAULT_META_DESCRIPTION;
@@ -139,6 +152,12 @@ export default function App() {
 
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', description);
+
+    // GTM-5W4RL647 automatically sends the initial page_view on load; track subsequent SPA transitions here
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
 
     trackPageView(title, routePath);
   }, [currentPage, selectedGuideId]);
